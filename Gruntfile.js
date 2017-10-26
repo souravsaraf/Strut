@@ -1,6 +1,6 @@
 // Generated on 2013-02-27 using generator-webapp 0.1.5
 'use strict';
-var lrSnippet = require('grunt-contrib-livereload/lib/utils').livereloadSnippet;
+//var lrSnippet = require('grunt-contrib-livereload/lib/utils').livereloadSnippet;
 var mountFolder = function (connect, dir) {
     return connect.static(require('path').resolve(dir));
 };
@@ -62,32 +62,31 @@ module.exports = function (grunt) {
 
         watch: {
             handlebars: {
-                files: [
-                    "app/bundles/**/templates/*.bars"
-                ],
-                tasks: ['handlebars', 'livereload']
+				options: { livereload: true },
+                files: ["app/bundles/**/templates/*.bars"],
+                tasks: ['handlebars']
             },
-            livereload: {
-                files: [
-                    '<%= yeoman.app %>/*.html',
-                    '{.tmp,<%= yeoman.app %>}/styles/{,*/}*.css',
-                    '{.tmp,<%= yeoman.app %>}/scripts/{,*/}*.js',
-                    '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,webp}'
-                ],
-                tasks: ['livereload']
-            }
+            //livereload: {
+            //    files: [
+            //        '<%= yeoman.app %>/*.html',
+            //        '{.tmp,<%= yeoman.app %>}/styles/{,*/}*.css',
+            //        '{.tmp,<%= yeoman.app %>}/scripts/{,*/}*.js',
+            //        '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,webp}'
+            //    ],
+            //    tasks: ['livereload']
+            //}
         },
         connect: {
             options: {
                 port: 9000,
                 // change this to '0.0.0.0' to access the server from outside
-                hostname: '0.0.0.0'
+                hostname: '0.0.0.0',
+				livereload: true
             },
-            livereload: {
+			app: {
                 options: {
                     middleware: function (connect) {
                         return [
-                            lrSnippet,
                             mountFolder(connect, '.tmp'),
                             mountFolder(connect, 'app')
                         ];
@@ -284,8 +283,7 @@ module.exports = function (grunt) {
         grunt.task.run([
             'clean:server',
             'handlebars',
-            'livereload-start',
-            'connect:livereload',
+			'connect:app',
             'watch'
         ]);
     });
