@@ -6,13 +6,22 @@
 
 
 .bg-default {
-  background: -webkit-radial-gradient(#F0F0F0, #BEBEBE);
-  background: -moz-radial-gradient(#F0F0F0, #BEBEBE);
-  background: -ms-radial-gradient(#F0F0F0, #BEBEBE);
-  background: -o-radial-gradient(#F0F0F0, #BEBEBE);
-  background: radial-gradient(#F0F0F0, #BEBEBE);
+  background: white;
 }
 
+.bg-surface-default {
+  /*background-color: lavender;*/
+  /*background-color: #f0e68c;*/
+  /*Theme 1*/
+  /*background: #757F9A;  /* fallback for old browsers */
+  /*background: -webkit-linear-gradient(to right, #D7DDE8, #757F9A);  /* Chrome 10-25, Safari 5.1-6 */
+  /*background: linear-gradient(to right, #D7DDE8, #757F9A); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  /*Theme2*/
+  background: #757F9A;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #D7DDE8, #757F9A);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #D7DDE8, #757F9A); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+*/
 /*
 included for legacy support of old decks with the defaultbg attribute set.
 */
