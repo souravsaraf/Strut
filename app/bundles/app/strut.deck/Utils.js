@@ -5,7 +5,7 @@ define(function() {
 			var result;
 			if (slide) {
 				result = slide.get('surface');
-				if (result == 'bg-default' || result == null)
+				if (result == 'bg-surface-default' || result == null)
 					result = deck.slideSurface();
 			}
 
@@ -34,14 +34,21 @@ define(function() {
 		 * Other problems arise from the fact that legacy presentations don't have their
 		 * background attributes set.
 		 *
-		 * also bg-default refers to the deck background if from a slide
-		 * and the surface background if from a deck.
+		 * bg-default refers to the deck background if from a slide
+		 * and bg-surface-default refers to the the surface background if from a deck.
 		 */
 		slideBackground: function(slide, deck, opts) {
 			opts = opts || {};
 			var result;
 			var surface = this.slideSurface(slide, deck);
 			if (slide) {
+				// console.log("slide.get('background') = " + slide.get('background'));
+				// console.log("deck.slideBackground() = " + deck.slideBackground());
+				// console.log("surface = " + surface);
+				// console.log("deck.slideSurface() = " + deck.slideSurface());
+				// console.log("opts.surfaceForDefault = " + opts.surfaceForDefault);
+				// console.log("opts.transparentForSurface = " + opts.transparentForSurface);
+				// console.log("opts.transparentForDeckSurface = " + opts.transparentForDeckSurface);
 				result = slide.get('background');
 				if (result == 'bg-default' || result == null) {
 					result = deck.slideBackground();
@@ -54,8 +61,8 @@ define(function() {
 				result = deck.slideBackground();
 			}
 
-			if (result == 'bg-default' && opts.surfaceForDefault)
-				result = surface;
+			// if (result == 'bg-default' && opts.surfaceForDefault)
+			//	result = surface;
 
 			if (result == surface && opts.transparentForSurface) {
 				result = '';
@@ -84,7 +91,7 @@ define(function() {
 					$el.removeClass(bg);
 				});
 			}
-				
+
 			return bgs;
 		},
 

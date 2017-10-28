@@ -70,7 +70,7 @@ function(Backbone, empty, ComponentFactory, GlobalEvents, Component,
 				self._renderContents();
 			}, 0);
 
-			this.$el.addClass((this._deck.get('surface') || 'bg-default'));
+			this.$el.addClass(this._deck.get('surface'));
 
 			return this;
 		},
@@ -79,7 +79,11 @@ function(Backbone, empty, ComponentFactory, GlobalEvents, Component,
 			if (!this._$slideContainer) return;
 			this._$slideContainer.removeClass();
 			this._$slideContainer.addClass('slideContainer ui-selectable');
+			// var e = this._$slideContainer;
+			// console.log("Inside update_bg");
+			// console.log("Before Update, classes are : " + e.prop('className').split(' '));
 			DeckUtils.applyBackground(this._$slideContainer, this.model, this._deck, {transparentForSurface: true, surfaceForDefault: true});
+			// console.log("After Update, classes are : " + e.prop('className').split(' '));
 		},
 
 		_updateSurface: function(model, bg) {

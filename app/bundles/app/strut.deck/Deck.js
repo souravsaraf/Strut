@@ -10,13 +10,13 @@ define(["common/Calcium",
 	"strut/editor/GlobalEvents",
 	'./DeckUpgrade',
 	'./CustomBackgrounds'],
-	function(Backbone, 
-			 SlideCollection, 
-			 SlideCommands, 
-			 CmdListFactory, 
-			 Slide, 
-			 key, 
-			 DeckUpgrade, 
+	function(Backbone,
+			 SlideCollection,
+			 SlideCommands,
+			 CmdListFactory,
+			 Slide,
+			 key,
+			 DeckUpgrade,
 			 CustomBackgrounds) {
 		/**
 		 * This represents a slide deck.  It has a title, a currently active slide, a collection of slides, the filename on
@@ -80,21 +80,21 @@ define(["common/Calcium",
 
 			// TODO add doc
 			slideBackground: function() {
-				return this.get('background') || 'bg-transparent';
+				return this.get('background') || 'bg-default';
 			},
 
 			// TODO add doc
 			slideSurface: function() {
-				return this.get('surface') || 'bg-default';
+				return this.get('surface') || 'bg-surface-default';
 			},
 
 			/**
 			 * Given a color, this generates a custom background
 			 * class for that color.
-			 * The returned object contains the name of the 
+			 * The returned object contains the name of the
 			 * class for the color and whether or not
 			 * that class existed previously.
-			 * 
+			 *
 			 * @param {string} color hex string
 			 * @returns {Object}
 			 */

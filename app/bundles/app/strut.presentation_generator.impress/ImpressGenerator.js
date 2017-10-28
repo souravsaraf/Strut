@@ -86,7 +86,7 @@ function(Handlebars, Math2, marked, DeckUtils) {
 
 			Handlebars.registerHelper("determineSurface", function(slide, deck) {
 				var bg = DeckUtils.slideSurface(slide, deck);
-				if (bg && bg != 'bg-default' && bg.indexOf('img:') == -1)
+				if (bg && bg != 'bg-surface-default' && bg.indexOf('img:') == -1)
 					return ' ' + bg + ' ';
 				return '';
 			});
