@@ -1,22 +1,91 @@
-.header .divider-vertical {
-	height: 54px;
+.row-fluid .header {
+	position: relative;
+}
+
+.row-fluid.header  .container_for_both_rows 
+{
+    display: flex;
+    flex-direction: column; // this is so that the children of this div are displaying flexibly in a top-bottom direction
+    align-items: stretch;
+}
+
+.header .container_for_both_rows .container
+{
+	margin-left : 0px;
+	margin-right : 0px;
+	width : auto;
+}
+
+.header .menuBar {
+	height: 36px;
+	position: relative;
+}
+
+.header .menuBar > div {
+	height: 36px;
+}
+
+.header .manuBar > div > .container {
+	height: 36px;
+}
+
+.menuBar .brand {
+	padding: 2px 20px 2px;
+	font-size: 18px;
+}
+
+.menuBar .nav > li > a {
+	padding: 7px 10px 8px;
+	background-color : red;
+	color : blue;
+}
+
+.header .nav .active a:hover {
+	background-color: gray;
+	background-image: linear-gradient(to bottom, gray, gray);
+    background-repeat: repeat-x;
+}
+
+.header .nav li.open {
+	background-color: gray;
 }
 
 .header .navbar-inner {
-	border-radius: 0;
+	border-radius: 0px;
+}
+
+.header .navbar-inner .btn-group {
+	margin-right: 4px;
+	padding: 0;
+}
+
+.navbar {
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.navbar .btn, .navbar .btn-group:not(.normalBtns) {
 }
 
 .header .navbar {
 	margin-bottom: 0;
 }
 
-.navbar-inner {
-  position: relative;
-  z-index: 3;
+.header .navbar-inner {
+	border-radius: 0;
 }
 
-.row-fluid .header {
-	position: relative;
+.header #upper_row .navbar-inner{
+  position: relative;
+  z-index: 4;
+}
+.header #lower_row .navbar-inner{
+  position: relative;
+  z-index: 3;
 }
 
 .header .tablets {
@@ -24,4 +93,75 @@
 	top: 55px;
 	left: 150px;
 	z-index: 2;
+}
+
+// CUSTOM NAVBAR STYLE BELOW. This style was created by copying most of the styles from Strut version 0.4
+.custom_navbar {
+  background-color: #414141;
+  border-color: #999999;
+}
+.custom_navbar .navbar-brand {
+  color: #ffffff;
+}
+.custom_navbar .navbar-brand:hover,
+.custom_navbar .navbar-brand:focus {
+  color: #ffffff;
+}
+.custom_navbar .navbar-text {
+  color: #ffffff;
+}
+.custom_navbar .navbar-nav > li > a {
+  color: #ffffff;
+}
+.custom_navbar .navbar-nav > li > a:hover,
+.custom_navbar .navbar-nav > li > a:focus {
+  color: #ffffff;
+}
+.custom_navbar .navbar-nav > .active > a,
+.custom_navbar .navbar-nav > .active > a:hover,
+.custom_navbar .navbar-nav > .active > a:focus {
+  color: #ffffff;
+  background-color: #999999;
+}
+.custom_navbar .navbar-nav > .open > a,
+.custom_navbar .navbar-nav > .open > a:hover,
+.custom_navbar .navbar-nav > .open > a:focus {
+  color: #ffffff;
+  background-color: #999999;
+}
+.custom_navbar .navbar-toggle {
+  border-color: #999999;
+}
+.custom_navbar .navbar-toggle:hover,
+.custom_navbar .navbar-toggle:focus {
+  background-color: #999999;
+}
+.custom_navbar .navbar-toggle .icon-bar {
+  background-color: #ffffff;
+}
+.custom_navbar .navbar-collapse,
+.custom_navbar .navbar-form {
+  border-color: #ffffff;
+}
+.custom_navbar .navbar-link {
+  color: #ffffff;
+}
+.custom_navbar .navbar-link:hover {
+  color: #ffffff;
+}
+
+@media (max-width: 767px) {
+  .custom_navbar .navbar-nav .open .dropdown-menu > li > a {
+    color: #ffffff;
+  }
+  .custom_navbar .navbar-nav .open .dropdown-menu > li > a:hover,
+  .custom_navbar .navbar-nav .open .dropdown-menu > li > a:focus {
+    color: #ffffff;
+  }
+  .custom_navbar .navbar-nav .open .dropdown-menu > .active > a,
+  .custom_navbar .navbar-nav .open .dropdown-menu > .active > a:hover,
+  .custom_navbar .navbar-nav .open .dropdown-menu > .active > a:focus {
+    color: #ffffff;
+    background-color: #999999;
+  }
 }

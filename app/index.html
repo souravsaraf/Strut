@@ -41,46 +41,7 @@
             ga('create', 'UA-42322531-1', 'strut.io');
             ga('send', 'pageview');
         </script>
-        <!-- ATTACHING MUTATIONOBSERVER which is basically DOM Events Listener -->
-        <script type="text/javascript">
-            /*var observer = new MutationObserver(function(mutations) {
-            mutations.forEach(function(mutation) {
-            console.log('Mutation type: ' + mutation.type);
-            if ( mutation.type == 'childList' ) {
-            if (mutation.addedNodes.length >= 1)
-            {
-            for (let i=0; i<mutation.addedNodes.length; i++)
-            {
-            var node = mutation.addedNodes[i];
-            if (node.nodeName != '#text') {
-            	console.log('Added ' + node.tagName + ' tag.');
-            	console.dir(node);
-            	console.log("Class of the added element is : " + node.classList);
-            }
-            }
-            }
-            else if (mutation.removedNodes.length >= 1) {
-            console.log('Removed ' + mutation.removedNodes[0].tagName + ' tag.')
-            }
-            }
-            else if (mutation.type == 'attributes') {
-            console.log('Modified class , New classes are : ' + mutation.target.class);
-            }
-            });
-            });
 
-            var observerConfig = {
-            attributes: true,
-            attributeFilter: ['class'],
-            childList: true,
-            subtree: true
-            };
-
-            // Listen to all changes to body and child nodes
-            var targetNode = document.getElementsByTagName('html')[0];
-            observer.observe(targetNode, observerConfig);
-            */
-        </script>
     </head>
     <body class="bg-default">
         <!--[IF IE]>
@@ -178,11 +139,79 @@
             	}
 
         </script>
+        <!-- ATTACHING MUTATIONOBSERVER which is basically a DOM Event Listener -->
+        <script type="text/javascript">
+        /*var observer = new MutationObserver(function(mutations)
+        {
+        var count = 0;
+        var flag = false;
+        mutations.forEach(function(mutation)
+        {
+            console.log('Mutation type : ' + mutation.type);
+            // DOM Tree Modified
+            if (mutation.type == 'childList' || mutation.type == 'subtree')
+            {
+                count++;
+                // Nodes Added
+                if (mutation.addedNodes.length >= 1)
+                {
+                    for (let i = 0; i < mutation.addedNodes.length; i++)
+                    {
+                        var node = mutation.addedNodes[i];
+                        if (node.nodeName != '#text')
+                        {
+                            console.log('Added ' + node.tagName + ' tag.');
+                            //console.dir(node);
+                            console.log("Class of the added element is : " + node.classList);
+                            //if (!flag && node.classList == "container-fluid")
+                            //{
+                            //    flag = true;
+                            //}
+                            //if (flag)
+                            //{
+                            //    if (confirm("Prompt " + count + " Continue Loading Page?") == true)
+                            //    {;
+                            //    }
+                            //    else
+                            //    {
+                            //        window.stop();
+                            //    }
+                            //}
+                        }
+                    }
+                }
+                // Nodes Removed
+                else if (mutation.removedNodes.length >= 1)
+                {
+                    console.log('REMOVED' + mutation.removedNodes[0].tagName + ' tag. Click Below for Details : ');
+                    //console.dir(mutation.removedNodes[0]);
+                }
+            }
+            // Attributes changed roughly CSS changed
+            else if (mutation.type == 'attributes')
+            {
+                console.log('Modified class , New classes are : ' + mutation.target.class);
+            }
+        });
+        });
+
+        var observerConfig = {
+        childList: true,
+        subtree: true
+        };
+
+        // Listen to all changes to body and child nodes
+        var targetNode = document.getElementsByTagName('body')[0];
+        observer.observe(targetNode, observerConfig);
+		*/
+        </script>
         <!-- build:js scripts/amd-app.js -->
         <script type="text/javascript" data-main="scripts/main" src="scripts/libs/require.js"></script>
         <!-- endbuild -->
         <div id="modals">
         </div>
         <script src="//localhost:35729/livereload.js"></script>
+		<script type="text/javascript">
+		</script>
     </body>
 </html>

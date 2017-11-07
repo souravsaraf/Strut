@@ -50,7 +50,7 @@ function(Backbone, empty, ComponentFactory, GlobalEvents, Component,
 			this._$slideContainer.css(config.slide.size);
 
 			DeckUtils.applyBackground(this._$slideContainer, this.model, this._deck, {transparentForSurface: true, surfaceForDefault: true, transparentForDeckSurface: true});
-			this._$markdownContent = $('<div class="markdownArea themedArea"></div>');
+			this._$markdownContent = $('<div id="slide_content" class="markdownArea themedArea"></div>');
 			this._$slideContainer.append(this._$markdownContent);
 
 			this._$slideContainer.selectable({
