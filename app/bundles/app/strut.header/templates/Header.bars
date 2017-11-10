@@ -1,47 +1,7 @@
 <div class="container_for_both_rows">
 	<div id="upper_row" class="navbar navbar-inverse navbar-static-top menuBar">
 		<div class="container navbar-inner">
-			<a class="brand" href="#"><img src="styles/img/strut-logo-32-light.png" alt="Strut 1.1"/></a>
-			<ul class="navbar-nav nav">
-				<li class="dropdown active">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-						File<b class="caret"></b>
-					</a>
-					<ul class="dropdown-menu">
-						<li data-option="new"><a href="#">New</a></li>
-						<li data-option="open"><a href="#">Open...</a></li>
-						<!-- <li data-option="openRecent"><a href="#">Open Recent...</a></li> -->
-						<li data-option="save"><a href="#">Save</a></li>
-						<li data-option="saveAs"><a href="#">Save As...</a></li>
-					</ul>
-				</li>
-				<li class="dropdown active">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-						Edit<b class="caret"></b>
-					</a>
-					<ul class="dropdown-menu">
-						<li data-option="undo"><a href="#">Undo <span class="undoName label"></span></a></li>
-						<li data-option="redo"><a href="#">Redo <span class="redoName label"></span></a></li>
-						<li data-option="cut"><a href="#">Cut</a></li>
-						<li data-option="copy"><a href="#">Copy</a></li>
-						<li data-option="paste"><a href="#">Paste</a></li>
-					</ul>
-				</li>
-				<li class="dropdown active">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-						Slideshow<b class="caret"></b>
-					</a>
-					<ul class="dropdown-menu">
-						<li data-option="exportWebpage"><a href="#">Export as Webpage</a></li>
-						<li data-option="exportZIP"><a href="#">Zip Presentation</a></li>
-						<li class="divider"></li>
-						<li data-option="exportJSON"><a href="#">Export to JSON</a></li>
-						<li data-option="importJSON"><a href="#">Import from JSON</a></li>
-						<li class="divider"></li>
-						<li data-option="changeBackground"><a href="#">Change Background</a></li>
-					</ul>
-				</li>
-			</ul>
+			
 		</div>
 	</div>
 	<div id="lower_row" style="height:52px;">
