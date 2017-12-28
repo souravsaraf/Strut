@@ -1,24 +1,26 @@
-<div class="navbar navbar-inverse span12">
-	<div class="navbar-inner">
-		<ul class="nav">
-			<li class="logo-holder">
-			</li>
-			<li class="divider-vertical">
-			</li>
-		</ul>
-		<ul class="nav">
-			<li class="create-comp-buttons">
-				<div class="btn-group iconBtns">
-				</div>
-			</li>
-		</ul>
-		<ul class="nav theme-buttons">
-		</ul>
-		<ul class="nav pull-right">
-			<li class="divider-vertical">
-			</li>
-			<li class="mode-buttons">
-			</li>
-		</ul>
+<div class="container_for_both_rows">
+	<div id="upper_row" class="navbar navbar-inverse navbar-static-top menuBar">
+		<div class="container navbar-inner">
+			
+		</div>
+	</div>
+	<div id="lower_row" style="height:52px;">
+			<div class="navbar navbar-inverse">
+			<div class="navbar-inner">
+				<ul class="nav navbar-nav">
+					<li class="create-comp-buttons">
+						<div class="btn-group iconBtns"></div>
+					</li>
+				</ul>
+				<ul class="nav navbar-nav theme-buttons ">
+				</ul>
+				<ul class="nav navbar-nav pull-right ">
+					<li class="divider-vertical">
+					</li>
+					<li class="mode-buttons">
+					</li>
+				</ul>
+			</div>
+		</div>
 	</div>
 </div>

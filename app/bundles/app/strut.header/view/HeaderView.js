@@ -1,16 +1,16 @@
 define(['libs/backbone',
-		'strut/logo_button/LogoView',
+		'strut/logo_row/LogoRowView',
 		'strut/presentation_generator/view/PreviewButton',
 		'./ThemeProviderView',
 		'./Tablets',
 		'css!styles/header/header.css'],
-function(Backbone, LogoView, PreviewButton, ThemeProviderView, Tablets, empty) {
+function(Backbone, LogoRowView, PreviewButton, ThemeProviderView, Tablets, empty) {
 	return Backbone.View.extend({
 		className: 'row-fluid header',
 
 		initialize: function() {
 			this._template = JST['strut.header/Header'];
-			this._logoButton = new LogoView({editorModel: this.model.editorModel()});
+			this._logoRow = new LogoRowView({editorModel: this.model.editorModel()});
 			this._previewButton = 
 				new PreviewButton({editorModel: this.model.editorModel()});
 			this._themeProviderView = new ThemeProviderView(this.model.editorModel());
@@ -33,7 +33,7 @@ function(Backbone, LogoView, PreviewButton, ThemeProviderView, Tablets, empty) {
 		render: function() {
 			this.$el.html(this._template());
 
-			this.$el.find('.logo-holder').append(this._logoButton.render().$el);
+			this.$el.find('.container.navbar-inner').append(this._logoRow.render().$el);
 
 			var $modeButtons = this.$el.find('.mode-buttons');
 			this.model.get('modeButtons').forEach(function(button) {
