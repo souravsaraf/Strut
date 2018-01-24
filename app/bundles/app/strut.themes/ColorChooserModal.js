@@ -1,4 +1,4 @@
-define(['libs/backbone'],
+define(['backbone'],
 function(Backbone) {
 	/**
 	* A modal that present a flat color chooser.

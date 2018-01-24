@@ -1,4 +1,4 @@
-define(['libs/backbone',
+define(['backbone',
 		'framework/ServiceCollection'],
 function(Backbone, ServiceCollection) {
 	return Backbone.Model.extend({

@@ -1,4 +1,4 @@
-define(['libs/backbone',
+define(['backbone',
 		'./LogoRowModel',
 		'css!styles/logo_row/logo.css'],
 function(Backbone, LogoRowModel) {

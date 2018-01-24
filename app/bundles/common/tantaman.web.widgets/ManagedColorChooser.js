@@ -1,4 +1,4 @@
-define(['libs/backbone', 'tantaman/web/Utils'],
+define(['backbone', 'tantaman/web/Utils'],
 function(Backbone, Utils) {
 	'use strict';
 	var instances = {};

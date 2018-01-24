@@ -1,4 +1,4 @@
-define(['libs/backbone',
+define(['backbone',
 	'strut/header/model/HeaderModel',
 	'strut/deck/Deck',
 	'strut/slide_components/ComponentFactory',

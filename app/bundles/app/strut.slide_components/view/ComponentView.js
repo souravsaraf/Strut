@@ -1,4 +1,4 @@
-define(["libs/backbone",
+define(['backbone',
 	"tantaman/web/widgets/DeltaDragControl",
 	"common/Math2",
 	"css!styles/slide_components/ComponentView.css",

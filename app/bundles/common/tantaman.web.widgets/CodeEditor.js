@@ -1,6 +1,6 @@
 // Editor for "code" which can be styled via some arbitrary class
-define(['libs/backbone', 'codemirror/codemirror'],
-function(Backbone, CodeMirror) {
+define(['backbone', 'codemirror/codemirror', 'bootstrap'],
+function(Backbone, CodeMirror, Bootstrap) {
 	// TODO: provide a meaningful way to cancel edits (e.g. restore previous state of
 	// the editor, not just ignore changes)
 	return Backbone.View.extend({

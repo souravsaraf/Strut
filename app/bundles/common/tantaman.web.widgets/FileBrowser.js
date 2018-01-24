@@ -1,4 +1,4 @@
-define(['libs/backbone', 'css!styles/widgets/fileBrowser.css'],
+define(['backbone', 'css!styles/widgets/fileBrowser.css'],
 function(Backbone, empty) {
 	return Backbone.View.extend({
 		events: {

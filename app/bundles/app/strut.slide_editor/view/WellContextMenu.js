@@ -1,4 +1,4 @@
-define(['libs/backbone',
+define(['backbone',
 		'../model/WellContextMenuModel',
     'css!styles/slide_editor/wellContextMenu.css'],
 function(Backbone, Model) {

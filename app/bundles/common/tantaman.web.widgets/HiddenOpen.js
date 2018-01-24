@@ -1,4 +1,4 @@
-define(['libs/backbone'], function(Backbone) {
+define(['backbone'], function(Backbone) {
   return Backbone.View.extend({
     className: 'dispNone',
     events: {
@@ -19,6 +19,8 @@ define(['libs/backbone'], function(Backbone) {
     _fileChosen: function(e) {
       var f;
       f = e.target.files[0];
+	  e.target.value = ""; // clearing the value of the input file HTML element, so that it fires next time, even when the same file is chosen by user.
+	  window.console.log("Inside hiddenOpen.js , File name is : " + f.name);
       return this._cb(f);
     },
     render: function() {

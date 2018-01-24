@@ -68,17 +68,17 @@ module.exports = function (grunt) {
       },
       css_files: {
         options: { livereload: true },
-        files: ['{.tmp,<%= yeoman.app %>}/**/*.css'],
+        files: ['{.tmp,<%= yeoman.app %>/**/*.css'],
         tasks: []
       },
       js_files: {
         options: { livereload: true },
-        files: ['{.tmp,<%= yeoman.app %>}/scripts/{,*/}*.js' , '<%= yeoman.app %>/bundles/app/strut.slide_editor/view/OperatingTable.js' , 'app/bundles/app/strut.editor/EditorView.js' , 'app/bundles/app/strut.deck/Utils.js'],
+        files: ['.tmp,<%= yeoman.app %>/**/*.js'],
         tasks: []
       },
       html_files: {
         options: { livereload: true },
-        files: ['<%= yeoman.app %>/*.html'],
+        files: ['.tmp,<%= yeoman.app %>/**/*.html'],
         tasks: []
       }
       //whenever_files_below_are_modified_connect_colon_app_task_will_run: { // this weird name "whenever_files_below_are_modified_connect_colon_app_task_will_run" does not matter.

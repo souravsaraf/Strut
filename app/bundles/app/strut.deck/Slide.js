@@ -2,7 +2,7 @@
  * @module model.presentation
  * @author Matt Crinklaw-Vogt
  */
-define(["libs/backbone",
+define(['backbone',
 	"./SpatialObject",
 	"strut/slide_components/ComponentFactory",
 	"common/Math2", "./ComponentCommands",

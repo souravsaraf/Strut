@@ -1,4 +1,4 @@
-define(['libs/backbone', 'framework/ServiceCollection'],
+define(['backbone', 'framework/ServiceCollection'],
 function(Backbone, ServiceCollection) {
 	function ThemeProviderCollection(editorModel, meta) {
 		this._editorModel = editorModel;

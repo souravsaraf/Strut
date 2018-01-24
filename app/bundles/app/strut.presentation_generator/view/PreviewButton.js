@@ -1,4 +1,4 @@
-define(['libs/backbone', '../PreviewLauncher'],
+define(['backbone', '../PreviewLauncher'],
 function(Backbone, PreviewLauncher) {
 	return Backbone.View.extend({
 		className: 'btn-group iconBtns',

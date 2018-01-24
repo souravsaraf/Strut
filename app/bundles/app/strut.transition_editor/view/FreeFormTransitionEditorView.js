@@ -1,4 +1,4 @@
-define(['libs/backbone',
+define(['backbone',
 	'strut/slide_snapshot/TransitionSlideSnapshot',
 	'strut/deck/Utils'],
 	function(Backbone, TransitionSlideSnapshot, DeckUtils) {

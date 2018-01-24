@@ -1,4 +1,4 @@
-define(['libs/backbone', '../model/ThemeProviderCollection'],
+define(['backbone', '../model/ThemeProviderCollection'],
 function(Backbone, ThemeProviderCollection) {
 	return Backbone.View.extend({
 		className: 'themeProviders',

@@ -1,4 +1,4 @@
-define(['libs/backbone'],
+define(['backbone'],
 function(Backbone) {
 	'use strict';
 	// TODO: make a general class to handle all this service boilerplate.

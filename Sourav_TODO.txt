@@ -1,0 +1,13 @@
+. Add a Settings Menu Item for Strut (Electron only) configurations can be stored and edited by end user. The possible configs are : 
+. Screen : 
+			Monitor 1 / 2 /3 etc (Which one to use for Strut).
+			Screen Height/Width to Use for Strut (Add a minimum restriction here).
+. Storage : 
+			Strut AppData folder.
+			Default folder for reading and writing .strut files.
+			Recent Files Length
+. Others
+
+. Create data structure for maintaining RECENT 5 strut files and load them in the file storage , remove the ls *.strut logic from list presentations.
+. Add "Browse" button in the SaveAs window. Ask that confirmation "<Filename> already exists. \n Do you want to replace?" also.
+. Remove localStorage as a "Storage Provider" when running electron app.

@@ -1,4 +1,4 @@
-define(['libs/mousetrap', 'libs/backbone'],
+define(['libs/mousetrap', 'backbone'],
 function(mousetrap, Backbone) {
 	'use strict';
 

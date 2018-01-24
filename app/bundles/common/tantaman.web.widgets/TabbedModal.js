@@ -2,7 +2,7 @@
 A modal backed by a ServiceCollection.
 Each entry in the collection gets a new tab.
 */
-define(['libs/backbone'],
+define(['backbone'],
 function(Backbone) {
 	return Backbone.View.extend({
 		events: {
