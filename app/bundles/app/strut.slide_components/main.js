@@ -49,7 +49,7 @@ define(['./view/ComponentButton',
 					tag: 'img',
 					title: lang.insert_image,
 					editorModel: editorModel,
-					browsable: true
+					browsable: true,
 				}));
 
 				buttons.push(new ImportingComponentButton({

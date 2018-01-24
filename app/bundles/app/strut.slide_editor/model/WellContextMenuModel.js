@@ -1,4 +1,4 @@
-define(['libs/backbone'],
+define(['backbone'],
 function(Backbone) {
 	'use strict';
 

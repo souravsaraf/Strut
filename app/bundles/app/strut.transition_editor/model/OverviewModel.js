@@ -4,7 +4,7 @@
  * editors to display and provide them as a collection to the Overview
  * view.
  */
-define(['tantaman/web/Utils', 'libs/backbone'],
+define(['tantaman/web/Utils', 'backbone'],
 function(Utils, Backbone) {
 	return Backbone.Model.extend({
 		initialize: function() {

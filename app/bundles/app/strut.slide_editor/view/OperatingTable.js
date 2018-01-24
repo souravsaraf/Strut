@@ -1,4 +1,4 @@
-define(['libs/backbone',
+define(['backbone',
 		'css!styles/slide_editor/operatingTable.css',
 		'strut/slide_components/ComponentFactory',
 		'strut/editor/GlobalEvents',

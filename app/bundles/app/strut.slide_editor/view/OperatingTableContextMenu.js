@@ -1,4 +1,4 @@
-define(['lang', 'libs/backbone',
+define(['lang', 'backbone',
 		'strut/themes/AvailableBackgrounds'],
 function(lang, Backbone, AvailableBackgrounds) {
 	function ContextMenu() {

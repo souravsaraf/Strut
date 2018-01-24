@@ -19,10 +19,11 @@ define(function() {
 			rawDeck.deckVersion = '1.0';
 
 			fixBackgroundAndSurface(rawDeck);
-
-			rawDeck.slides.forEach(function(slide) {
-				fixBackgroundAndSurface(slide);
-			});
+			
+			for(var i=0; i<rawDeck.slides.length; i++)
+			{
+				fixBackgroundAndSurface(rawDeck.slides[i]);
+			}
 		}
 	};
 });

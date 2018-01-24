@@ -1,8 +1,8 @@
 /*
 @author Matt Crinklaw-Vogt
 */
-define(['libs/backbone', 'libs/imgup'],
-function(Backbone, Imgup) {
+define(['backbone', 'libs/imgup', 'bootstrap'],
+function(Backbone, Imgup, Bootstrap) {
 	var modalCache = {};
 	var reg = /[a-z]+:/;
 	var imgup = new Imgup('847de02274cba30');
@@ -49,29 +49,30 @@ function(Backbone, Imgup) {
 			this._switchToProgress();
 			this.item.src = '';
 
-			imgup.upload(f).progress(function(ratio) {
-				_this._updateProgress(ratio);
-			}).then(function(result) {
-				_this._switchToThumbnail();
-				_this.$input.val(result.data.link);
-				_this.urlChanged({
-					which: -1
-				});
-			}, function() {
-				_this._updateProgress(0);
-				_this._switchToThumbnail();
-				_this.$input.val('Failed to upload image to imgur');
-			});
+			// imgup.upload(f).progress(function(ratio) {
+			// 	_this._updateProgress(ratio);
+			// }).then(function(result) {
+			// 	_this._switchToThumbnail();
+			// 	_this.$input.val(result.data.link);
+			// 	_this.urlChanged({
+			// 		which: -1
+			// 	});
+			// }, function() {
+			// 	_this._updateProgress(0);
+			// 	_this._switchToThumbnail();
+			// 	_this.$input.val('Failed to upload image to imgur');
+			// });
 
 			
-			// reader = new FileReader();
-			// reader.onload = function(e) {
-			//   _this.$input.val(e.target.result);
-			//   _this.urlChanged({
-			//     which: -1
-			//   });
-			// };
-			// reader.readAsDataURL(f);
+			reader = new FileReader();
+			reader.onload = function(e) {
+			  _this._switchToThumbnail();
+			  _this.$input.val(e.target.result);
+			  _this.urlChanged({
+			    which: -1
+			  });
+			};
+			reader.readAsDataURL(f);
 		},
 		browseClicked: function() {
 			return this.$el.find('input[type="file"]').click();

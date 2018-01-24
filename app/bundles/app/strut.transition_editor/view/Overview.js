@@ -1,4 +1,4 @@
-define(['libs/backbone', 'tantaman/web/Utils',
+define(['backbone', 'tantaman/web/Utils',
 	'css!styles/transition_editor/overview.css',],
 function(Backbone, Utils, css) {
 	/**

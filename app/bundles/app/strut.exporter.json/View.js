@@ -1,4 +1,4 @@
-define(['libs/backbone', 'common/FileUtils', 'lang'],
+define(['backbone', 'common/FileUtils', 'lang'],
 function(Backbone, FileUtils, lang) {
 	'use strict';
 

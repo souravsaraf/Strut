@@ -1,4 +1,4 @@
-define(['libs/backbone',
+define(['backbone',
 	'./SlideDrawer',
 	'css!styles/slide_snapshot/slideSnapshot.css',
 	'strut/deck/Utils',

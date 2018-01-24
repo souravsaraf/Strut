@@ -63,6 +63,7 @@ function(StorageProviders) {
 		},
 
 		savePresentation: function(identifier, data, cb) {
+			console.log("Inside StorageInterface.js , Save or SaveAs was called");
 			var idx = identifier.indexOf('.strut');
 			if (idx == -1 || (idx + '.strut'.length != identifier.length)) {
 				identifier += '.strut';

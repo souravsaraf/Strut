@@ -1,4 +1,4 @@
-define(['libs/backbone',
+define(['backbone',
 		'strut/logo_row/LogoRowView',
 		'strut/presentation_generator/view/PreviewButton',
 		'./ThemeProviderView',

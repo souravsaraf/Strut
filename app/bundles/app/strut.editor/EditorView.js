@@ -1,4 +1,4 @@
-define(['libs/backbone',
+define(['backbone',
 		'strut/header/view/HeaderView',
 		'./CustomBgStylesheet'],
 function(Backbone, Header, CustomBgStylesheet) {

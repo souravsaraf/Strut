@@ -1,8 +1,8 @@
+console.log("Logging require js config before setting config object : \n" + JSON.stringify(require.s.contexts._.config));
 require.config({
 	paths: {
 		libs: "../scripts/libs",
 		preview_export: "../preview_export",
-
     	jquery: "../scripts/libs/jQuery",
 		jqueryui: "../scripts/libs/jquery-ui",
 		touchpunch: "../scripts/libs/jquery-ui-touch-punch",
@@ -48,6 +48,7 @@ require.config({
 
     	'tantaman/web': '../bundles/common/tantaman.web',
 		'tantaman/web/local_storage': '../bundles/common/tantaman.web.local_storage',
+		// Add File Storage Provider only if running electron app
 		'tantaman/web/remote_storage': '../bundles/common/tantaman.web.remote_storage',
 		'tantaman/web/saver': '../bundles/common/tantaman.web.saver',
 		'tantaman/web/storage': '../bundles/common/tantaman.web.storage',
@@ -59,6 +60,14 @@ require.config({
 	},
 
 	shim: {
+		jquery: {
+			exports: '$'
+		},
+		
+		backbone: {
+			deps: ["jquery"],
+		},
+		
 		bootstrap: {
 			deps: ["jquery"]
 		},
@@ -102,11 +111,24 @@ require.config({
 
 		'codemirror/modes/markdown': {
 			deps: ['codemirror/codemirror']
+		},
+		'codemirror/modes/xml' : {
+			deps: ['codemirror/codemirror']
 		}
   }
 });
+if(window.isElectron())
+{
+	require.s.contexts._.config.baseUrl += "scripts/";
+	require.config({
+	paths: {
+	'tantaman/web/file_storage': '../bundles/common/tantaman.file_storage',
+	}
+	});
+	console.log("Logging require js config after setting basedURL and config object : \n" + JSON.stringify(require.s.contexts._.config));
+}
 
-function getSelectionBoundaryElement(win, isStart) {
+window.getSelectionBoundaryElement = function getSelectionBoundaryElement(win, isStart) {
 	var range, sel, container = null;
 	var doc = win.document;
 

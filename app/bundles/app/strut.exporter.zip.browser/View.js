@@ -1,4 +1,4 @@
-define(['libs/backbone', './Archiver', 'lang'],
+define(['backbone', './Archiver', 'lang'],
 function(Backbone, Archiver, lang) {
 	return Backbone.View.extend({
 		name: "Zip",

@@ -1,4 +1,4 @@
-define(['libs/backbone',
+define(['backbone',
 	'jquery.multisortable',
 	'strut/slide_snapshot/SlideSnapshot',
 	'common/Throttler',

@@ -1,4 +1,4 @@
-define(['libs/backbone'], function(Backbone) {
+define(['backbone'], function(Backbone) {
 	function img() {
 		return 'styles/img/' + this.name + '.png';
 	};
