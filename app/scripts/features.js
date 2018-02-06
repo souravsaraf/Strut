@@ -3,6 +3,7 @@ define([
 	'strut/etch_extension/main',
 	'strut/storage/main',
 	'strut/logo_row/main',
+	'strut/startup/main',
 	'strut/themes/main',
 	'strut/editor/main',
 	'strut/exporter/json/main',
@@ -21,7 +22,6 @@ define([
 	'strut/well_context_buttons/main',
 	'tantaman/web/local_storage/main',
 	// 'tantaman/web/remote_storage/main',
-	'strut/startup/main'
 	],
 function(ServiceRegistry) {
 	var registry = new ServiceRegistry();
@@ -31,7 +31,7 @@ function(ServiceRegistry) {
 	// LOAD ALL MODULES EXCEPT THE LAST MODULE ie, 'strut/startup/main'.
 	// Loading Strut's core modules which are required for both website and desktop app.
 	var i = 0;
-	for (var i = 1; i < args.length-1; ++i) {
+	for (var i = 1; i < args.length; ++i) {
 		args[i].initialize(registry);
 	}
 	
@@ -40,16 +40,29 @@ function(ServiceRegistry) {
 	{
 		var electronModules = 
 		[
-			'tantaman/web/file_storage/main'
+			'tantaman/web/file_storage/main',
+			'strut/electron_config/main'
 		];
 		for(var i=0; i<electronModules.length; i++)
 		{
-			require(electronModules[i]).initialize(registry);
+			let x = require(electronModules[i]);
+			x.initialize(registry);
 		}
 	}
 	
-	// Load 'strut/startup/main' module which is required to be  loaded for both
-	args[args.length-1].initialize(registry);
+	// Load the remaining Strut modules which are needed for both scenearios (Web app and desktop app).
+	var remainingStrutModules = 
+	[
+	];
+	for(var i=0; i<remainingStrutModules.length; i++)
+	{
+		let x = remainingStrutModules[i];
+		let y = [x];
+		require(y, function()
+		{
+			arguments[0].initialize(registry);
+		});
+	}
 	
 	return registry;
 });

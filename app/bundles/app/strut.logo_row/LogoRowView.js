@@ -6,7 +6,15 @@ function(Backbone, LogoRowModel) {
 	return Backbone.View.extend({
 
 		initialize: function() {
-			this._template = JST['strut.logo_row/LogoRow'];
+			// Decide Template based on Web App or Electron App.
+			if(isElectron())
+			{
+				this._template = JST['strut.logo_row/LogoRowElectron'];
+			}
+			else
+			{
+				this._template = JST['strut.logo_row/LogoRow'];
+			}
 			this.model = new LogoRowModel(this.options.editorModel);
 			delete this.options.editorModel;
 		},
@@ -40,6 +48,17 @@ function(Backbone, LogoRowModel) {
 			{
 				var item = this.model.items[i];
 				$slideshow_dropdown.append(item.render().$el);
+			}
+			
+			if(isElectron())
+			{
+				var $config_menu_item = this.$el.find('li[data-menu_item="configuration"]');
+				var item = this.model.items[13];
+				// console.log("The li tag where stuff will be appended : \n" + $config_menu_item.prop("outerHTML"));
+				// console.log("The Electron Config Menu Item");
+				// console.dir(item);
+				// console.log("The appended stuff is : \n" + item.render().$el.prop("outerHTML"));
+				$config_menu_item.append(item.render().$el);
 			}
 
 			return this;

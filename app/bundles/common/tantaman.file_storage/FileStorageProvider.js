@@ -3,7 +3,6 @@ define(function()
 	var FileStorageProvider;
 	function FileStorageProvider()
 	{
-		console.log("Inside FileStorageProvider.js");
 		var fs = require('fs');
 		this.impl = fs;
 		this.name = "File Storage";
@@ -88,7 +87,6 @@ define(function()
 
 		ls: function(path, regex, cb)
 		{
-			console.log("Path is : " + path + "\nRegex is : " + regex);
 			let results = [];
 			if (!FileStorageProvider.impl.existsSync(path))
 			{
@@ -113,7 +111,6 @@ define(function()
 					if(cb) cb(path);
 				}
 			}
-			console.log("The list of files matching the regex " + regex + "starting from " + path + "are : \n" + results.join('\n'));
 			return FileStorageProvider;
 		},
 
@@ -123,7 +120,6 @@ define(function()
 			try
 			{
 				FileStorageProvider.impl.unlinkSync(path);
-				console.log("The file " + path + "was succesfully deleted");
 				if(cb) cb(true);
 				return FileStorageProvider;
 			}
@@ -141,14 +137,12 @@ define(function()
 			// Check if path is a text file before reading
 			var isAFile = FileStorageProvider.impl.lstatSync(path).isFile();
 			var isText = !isABinaryFile(path);
-			console.log("file? %s , textfile? %s" , isAFile , isText);
 			if( isAFile && isText )
 			{
 				// Reads file synchronously in the default encoding ie, utf8.
 				try
 				{
 					let data = FileStorageProvider.impl.readFileSync(path , DEFAULT_ENCODING);
-					console.log("The contents of the file : " + path + " are : ");
 					console.dir(data);
 					if(IsJsonStringOrJsonObject(data))
 					{
@@ -186,11 +180,7 @@ define(function()
 				try
 				{
 					data = JSON.stringify(data);
-					console.log("Writing the following data : ");
-					console.log(data);
-					console.log("to the file %s" , path);
 					FileStorageProvider.impl.writeFileSync(path, data, DEFAULT_ENCODING);
-					console.log("The file was succesfully saved at : " + path);
 					if(cb) { cb(true); }
 					return FileStorageProvider;
 				}

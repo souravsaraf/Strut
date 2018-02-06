@@ -3,7 +3,7 @@ define(['framework/ServiceCollection', 'tantaman/web/widgets/MenuItem',
 		'tantaman/web/widgets/UndoRedoMenuItem'],
 function(ServiceCollection, MenuItem, CmdListFactory, UndoRedoMenuItem) {
 	'use strict';
-
+	console.log("Inside strut logo row main.js");
 	var cmdList = CmdListFactory.managedInstance('editor');
 	function createMenuItem(actionEntry) {
 		if (actionEntry.meta().action == 'undo' || actionEntry.meta().action == 'redo') {

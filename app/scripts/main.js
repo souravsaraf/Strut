@@ -1,4 +1,4 @@
-console.log("Logging require js config before setting config object : \n" + JSON.stringify(require.s.contexts._.config));
+// console.log("Logging require js config before setting config object : \n" + JSON.stringify(require.s.contexts._.config));
 require.config({
 	paths: {
 		libs: "../scripts/libs",
@@ -21,11 +21,8 @@ require.config({
     	'marked': '../components/marked/marked',
 
     	// build - rmap
-    	'strut/presentation_generator/bespoke': '../bundles/app/strut.presentation_generator.bespoke',
-    	'strut/presentation_generator/reveal': '../bundles/app/strut.presentation_generator.reveal',
-    	'strut/presentation_generator/handouts': '../bundles/app/strut.presentation_generator.handouts',
+		'strut/config': '../bundles/app/strut.config',
     	'strut/deck': '../bundles/app/strut.deck',
-    	'strut/startup': '../bundles/app/strut.startup',
     	'strut/editor': '../bundles/app/strut.editor',
     	'strut/etch_extension': '../bundles/app/strut.etch_extension',
     	'strut/exporter/zip/browser': '../bundles/app/strut.exporter.zip.browser',
@@ -34,21 +31,23 @@ require.config({
     	'strut/header': '../bundles/app/strut.header',
     	'strut/importer': '../bundles/app/strut.importer',
     	'strut/importer/json': '../bundles/app/strut.importer.json',
+		'strut/logo_row': '../bundles/app/strut.logo_row',
+		'strut/presentation_generator': '../bundles/app/strut.presentation_generator',
+		'strut/presentation_generator/bespoke': '../bundles/app/strut.presentation_generator.bespoke',
+		'strut/presentation_generator/handouts': '../bundles/app/strut.presentation_generator.handouts',
     	'strut/presentation_generator/impress': '../bundles/app/strut.presentation_generator.impress',
-    	'strut/logo_row': '../bundles/app/strut.logo_row',
-    	'strut/presentation_generator': '../bundles/app/strut.presentation_generator',
+    	'strut/presentation_generator/reveal': '../bundles/app/strut.presentation_generator.reveal',
     	'strut/slide_components': '../bundles/app/strut.slide_components',
     	'strut/slide_editor': '../bundles/app/strut.slide_editor',
     	'strut/slide_snapshot': '../bundles/app/strut.slide_snapshot',
+		'strut/startup': '../bundles/app/strut.startup',
     	'strut/storage': '../bundles/app/strut.storage',
     	'strut/themes': '../bundles/app/strut.themes',
+		'strut/transition_editor': '../bundles/app/strut.transition_editor',
     	'strut/well_context_buttons': '../bundles/app/strut.well_context_buttons',
-    	'strut/config': '../bundles/app/strut.config',
-    	'strut/transition_editor': '../bundles/app/strut.transition_editor',
 
     	'tantaman/web': '../bundles/common/tantaman.web',
 		'tantaman/web/local_storage': '../bundles/common/tantaman.web.local_storage',
-		// Add File Storage Provider only if running electron app
 		'tantaman/web/remote_storage': '../bundles/common/tantaman.web.remote_storage',
 		'tantaman/web/saver': '../bundles/common/tantaman.web.saver',
 		'tantaman/web/storage': '../bundles/common/tantaman.web.storage',
@@ -117,15 +116,18 @@ require.config({
 		}
   }
 });
+
+// Add the following modules only if running electron app.
 if(window.isElectron())
 {
 	require.s.contexts._.config.baseUrl += "scripts/";
 	require.config({
 	paths: {
 	'tantaman/web/file_storage': '../bundles/common/tantaman.file_storage',
+	'strut/electron_config': '../bundles/app/strut.electron_config'
 	}
 	});
-	console.log("Logging require js config after setting basedURL and config object : \n" + JSON.stringify(require.s.contexts._.config));
+	// console.log("Logging require js config after setting basedURL and config object : \n" + JSON.stringify(require.s.contexts._.config));
 }
 
 window.getSelectionBoundaryElement = function getSelectionBoundaryElement(win, isStart) {

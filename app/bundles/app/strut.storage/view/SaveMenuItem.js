@@ -14,7 +14,7 @@ function(Backbone, ActionHandlers, ErrorModal, lang) {
 		},
 
 		save: function() {
-			console.log("Inside SaveMenuItem.js , Save or SaveAs was called");
+			// console.log("Inside SaveMenuItem.js , Save or SaveAs was called");
 			// As soon as "File-->Save" is clicked , this is the first function that gets called. See 'strut.storage/main.js line 35'
 			fileName = this.model.fileName();
 			if ((fileName == null)||(window.sessionMeta.isNewPresentation == 1)) {
