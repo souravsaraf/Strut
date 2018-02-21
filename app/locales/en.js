@@ -34,5 +34,6 @@ define({
 	},
 	background: 'Background',
 	surface: 'Surface',
-	configuration: 'Configuration'
+	configuration: 'Configuration',
+	cancel: 'Cancel'
 });

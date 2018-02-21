@@ -1,0 +1,20 @@
+<h4 style="text-align:center">Storage</h4>
+
+<div class="form-horizontal">
+	Strut AppData folder: &nbsp;
+	<input type="text" id="AppDataFolderTextBox">&nbsp;
+	<div data-option="selectAppDataFolder" class="btn">Browse</div><br>
+	<input data-input="AppDataFolder" type="file" style="display:none" webkitdirectory />
+</div><br>
+
+<div class="form-horizontal">
+	Strut Presentations Folder: &nbsp;
+	<input type="text" id="StrutPresentationsFolderTextBox">&nbsp;
+	<a data-option="selectStrutPresentationsFolder" class="btn">Browse</a><br>
+	<input data-input="StrutPresentationsFolder" type="file" style="display:none" webkitdirectory />
+</div><br>
+
+<div class="form-horizontal">
+	Number of Recent Files: &nbsp;
+	<input data-input="RecentFilesCount" type="number" min="1" max="10" value="1">
+</div>

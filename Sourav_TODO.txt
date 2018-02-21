@@ -8,6 +8,8 @@
 			Recent Files Length
 . Others
 
+In this task ---> Adjust width of the sidebar.
+
 . Create data structure for maintaining RECENT 5 strut files and load them in the file storage , remove the ls *.strut logic from list presentations.
 . Add "Browse" button in the SaveAs window. Ask that confirmation "<Filename> already exists. \n Do you want to replace?" also.
 . Remove localStorage as a "Storage Provider" when running electron app.

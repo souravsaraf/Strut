@@ -21,28 +21,79 @@ module.exports = function (grunt) {
     dist: 'dist'
   };
 
-  var barstaskdef = {
-    files: {
-      "app/scripts/compiled-templates.js": [
-        "app/bundles/**/templates/*.bars"
-      ]
-    },
-    options: {
-      namespace: 'JST',
-      processName: function(filename) {
-        return filename
-        .replace(/^app\//, '')
-        .replace(/\.bars$/, '')
-        .replace('bundles/', '')
-        .replace('app/', '') // TODO: just make a regex once moving is complete
-        .replace('common/', '') // see above todo
-        .replace('templates/', '');
-      },
-      amd: true
-    }
-  };
+  var barstaskdef =
+	{
+		files:
+		{
+			"app/scripts/compiled-templates.js":
+			[
+				"app/bundles/**/templates/*.bars",
+				"app/bundles/**/partials/*.bars"
+			]
+		},
+		options:
+		{
+			namespace: 'JST',
+			knownHelpersOnly: true,
+			amd: true,
+			partialRegex: /.*/,
+			partialsPathRegex: /.*\/partials\//,
+			partialsUseNamespace: true,
+			processName: function(filename)
+			{
+				return filename
+				.replace(/^app\//, '')
+				.replace(/\.bars$/, '')
+				.replace('bundles/', '')
+				.replace('app/', '') // TODO: just make a regex once moving is complete
+				.replace('common/', '') // see above todo
+				.replace('templates/', '');
+			},
+			processPartialName: function(filename)
+			{  
+				return filename
+				.replace(/^app\//, '')
+				.replace(/\.bars$/, '')
+				.replace('bundles/', '')
+				.replace('app/', '') // TODO: just make a regex once moving is complete
+				.replace('common/', '') // see above todo
+				.replace('templates/', '');
+			}
+		}
+	};
 
   grunt.initConfig({
+	    // Building Electron app
+  'electron-packager': {
+      buildWindows: {
+        options:{
+          platform        : 'win32',
+          arch            : 'ia32',
+          dir             : '.', // The source directory of the app. Its actually the directory where the package.json file is located.
+          out             : 'electron_packager_output_directory', // the output directory for electron packages
+          icon            : '<%= yeoman.app %>/img/strut_icon_96.ico', // The path to the .ico file as the icon of the application
+          name            : 'Strut', // The application name
+          ignore          : '.git', // One or more additional regular expression patterns which specify which files to ignore when copying files to create the app bundle(s)
+          asar            : false, // (boolean or object) Whether to package the application's source code into an archive
+          overwrite       : true // (boolean) Whether to replace an already existing output directory for a given platform
+        }
+      },
+	  buildCustom: {
+        options: function (name,platform,arch) {
+          return {
+            platform,
+            arch,
+            dir       : '.',
+            out       : 'electron_packager_output_directory',
+            icon      : '<%= yeoman.app %>/img/strut_icon_96.ico',
+            name      : 'Strut',
+            ignore    : '.git',
+            asar      : false,
+            overwrite : true
+          }
+        }
+	  }
+	},
     yeoman: yeomanConfig,
 
     handlebars: {
@@ -226,7 +277,6 @@ module.exports = function (grunt) {
     },
     files: {
       src: ['{.tmp,<%= yeoman.app %>}/styles/{,*/}*.css']
-      //src: ['{.tmp,<%= yeoman.app %>}/styles/{,*/}*.css','!<%= yeoman.app %>/styles/add-btn.css','!<%= yeoman.app %>/styles/built.css','!<%= yeoman.app %>/styles/etch_extension/EtchOverrides.css','!<%= yeoman.app %>/styles/logo_button/logo.css','!<%= yeoman.app %>/styles/slide_editor/slideWell.css']
     }
   },
   // VALIDATE HTML FILES ACCORDING TO HTML5 STANDARD
@@ -324,6 +374,7 @@ grunt.registerTask('server', function (target) {
     'clean:server',
     'handlebars',
     'connect:app',
+	'electron-packager:buildWindows',
     'watch'
   ]);
 });
@@ -352,6 +403,7 @@ grunt.registerTask('build', [
 grunt.registerTask('default', [
   'jshint',
   'test',
-  'build'
+  'build',
+  'electron-packager:buildWindows'
 ]);
 };

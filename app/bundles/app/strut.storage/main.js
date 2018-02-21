@@ -11,7 +11,6 @@ function(StorageModal,
 		MenuItem,
 		lang) {
 	'use strict';
-	console.log("Strut storage main.js body");
 	var storageInterface = null;
 	var storageModal = null;
 	var $modals = $('#modals');

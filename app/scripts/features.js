@@ -3,7 +3,6 @@ define([
 	'strut/etch_extension/main',
 	'strut/storage/main',
 	'strut/logo_row/main',
-	'strut/startup/main',
 	'strut/themes/main',
 	'strut/editor/main',
 	'strut/exporter/json/main',
@@ -22,17 +21,26 @@ define([
 	'strut/well_context_buttons/main',
 	'tantaman/web/local_storage/main',
 	// 'tantaman/web/remote_storage/main',
+	// The modules below will be loaded , but not initialized right now.
+	'strut/startup/main'
 	],
 function(ServiceRegistry) {
-	var registry = new ServiceRegistry();
-
-	var args = Array.prototype.slice.call(arguments, 0);
+	// Below we have an array of module names which will be loaded , but initialized later.
+	let moduleNamesToBeInitializedLater = 
+	[
+		'strut/startup/main'
+	];
+	let laterCount = moduleNamesToBeInitializedLater.length;
+	let totalModulesCount = arguments.length;
+	let stopAt = totalModulesCount - laterCount;
 	
-	// LOAD ALL MODULES EXCEPT THE LAST MODULE ie, 'strut/startup/main'.
-	// Loading Strut's core modules which are required for both website and desktop app.
-	var i = 0;
-	for (var i = 1; i < args.length; ++i) {
-		args[i].initialize(registry);
+	let registry = new ServiceRegistry();
+	// var args = Array.prototype.slice.call(arguments, 0);
+	
+	// Load and Initialize in registry the core modules of Strut which are required for both website and desktop app.
+	for (let i=1; i<stopAt; i++)
+	{
+		arguments[i].initialize(registry);
 	}
 	
 	// Loading Strut's  modules which are specific to desktop app.
@@ -43,25 +51,17 @@ function(ServiceRegistry) {
 			'tantaman/web/file_storage/main',
 			'strut/electron_config/main'
 		];
-		for(var i=0; i<electronModules.length; i++)
+		for(let i=0; i<electronModules.length; i++)
 		{
 			let x = require(electronModules[i]);
 			x.initialize(registry);
 		}
 	}
 	
-	// Load the remaining Strut modules which are needed for both scenearios (Web app and desktop app).
-	var remainingStrutModules = 
-	[
-	];
-	for(var i=0; i<remainingStrutModules.length; i++)
+	// Initialize the remaining Strut modules which are needed for both scenearios(Web app and desktop app).
+	for(let i=stopAt; i<totalModulesCount; i++)
 	{
-		let x = remainingStrutModules[i];
-		let y = [x];
-		require(y, function()
-		{
-			arguments[0].initialize(registry);
-		});
+		arguments[i].initialize(registry);
 	}
 	
 	return registry;

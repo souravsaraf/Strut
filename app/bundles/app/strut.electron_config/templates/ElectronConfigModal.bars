@@ -1,10 +1,20 @@
 <div class="modal-header">
-	<button class="close" data-dismiss="modal">X</button>
+	<button class="close" data-dismiss="modal">×</button>
 	<h3 class="title">{{title}}</h3>
 </div>
-<div class="modal-body" style="overflow: hidden">
-	
+<div class="modal-body">
+	<div class="navbar navbar-fixed-left">
+		<ul class="nav navbar-nav">
+			<li><a href="#" data-setting="storage">Storage</a></li>
+			<li><a href="#" data-setting="window">Window</a></li>
+			<li><a href="#" data-setting="others">Others</a></li>
+		</ul>
+	</div>
+	<div class="container" data-name="sidebarDependentContent">
+		{{> (lookup . 'partialTemplateToShow') }}
+	</div>
 </div>
 <div class="modal-footer">
-	<a href="#" class="btn btn-primary ok btn-inverse">Saved Configuration</a>
+	<a href="#" class="btn btn-primary ok btn-inverse" data-button_name="save">{{save}}</a>
+	<a href="#" class="btn btn-primary ok btn-inverse" data-button_name="cancel">{{cancel}}</a>
 </div>
