@@ -36,42 +36,46 @@
 
 /* CSS styling for the LogoRow Configuration Menu Item */
 .logoRow_configMenuItem.modal{
-	width: auto;
+    transform: translateX(-50%) translateY(30%); /* bootstrap modal already has left as -50%, we are using that here */
+    margin-left: 0px; /*cancel the margin-left: -280px by bootstrap*/
+	width: auto; /* Overwriting the modal width of 560px given by bootstrap */
 }
 .logoRow_configMenuItem .modal-body{
-	max-height: 100vh;
-	overflow:auto;
 	padding: 0px 15px 0px 0px;
+	width: 60vw;
 }
 
-.logoRow_configMenuItem .navbar-fixed-left {
-  width: 140px;
-  border-radius: 0;
-  margin: 0px;
-  height: 100%;
-  border: 1px solid green;
+.logoRow_configMenuItem .display-flex {
+	display: flex;
 }
 
-.logoRow_configMenuItem .navbar-fixed-left .navbar-nav > li {
-  float: none;   /*Cancel default li float: left */
-  width: 139px;
+.logoRow_configMenuItem .sidebarMenuList {
+	height: 100%;
+	border-right: 1px solid #ddd;
 }
 
-
-.logoRow_configMenuItem .navbar-fixed-left .navbar-nav > li > a {
-  color: #0088cc;
-  border-right: 1px solid #ddd;
+.logoRow_configMenuItem .sidebarMenuList a {
+	color: #0088cc;
+	height: 4vh;
 }
 
-.logoRow_configMenuItem .navbar-fixed-left .navbar-nav > li > a:hover{
-  background-color: #eeeeee;
-}
-
-.logoRow_configMenuItem .navbar-fixed-left .navbar-nav > li > a.current{
+.logoRow_configMenuItem .sidebarMenuList a:hover{
 	background-color: #eeeeee;
 }
 
-.logoRow_configMenuItem .navbar-fixed-left + .container {
-  padding-left: 160px;
-  width: auto;
+.logoRow_configMenuItem .sidebarMenuList a.current{
+	background-color: #eeeeee;
+}
+
+.logoRow_configMenuItem .flex-pinch-out {
+	display: -webkit-flex;
+	display: flex;
+	-webkit-justify-content: space-between;
+	justify-content: space-between;
+	-webkit-align-items: center;
+	align-items: center;
+}
+
+.logoRow_configMenuItem input[type="number"] {
+	width: auto;
 }

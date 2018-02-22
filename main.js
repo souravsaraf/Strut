@@ -1,6 +1,8 @@
 // Refer this website : https://www.sitepoint.com/desktop-node-apps-with-electron/
 'use strict';
 // process.env.ELECTRON_IS_DEV = 1;
+console.log("Logging Process : ");
+console.dir(process.versions);
 const electron = require('electron');
 const app = electron.app;  // Module to control application life.
 console.log("Logging userData path : " + app.getPath('userData'));

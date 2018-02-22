@@ -48,8 +48,8 @@ function(ServiceRegistry) {
 	{
 		var electronModules = 
 		[
+			'strut/electron_config/main',
 			'tantaman/web/file_storage/main',
-			'strut/electron_config/main'
 		];
 		for(let i=0; i<electronModules.length; i++)
 		{

@@ -13,4 +13,5 @@ psd-export/
 .project
 .buildpath
 .tern-port
+electron_packager_output_directory/
 
