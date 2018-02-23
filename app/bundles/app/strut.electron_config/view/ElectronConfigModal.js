@@ -8,7 +8,7 @@ function(Backbone,lang,Handlebars)
 		{
 			'destroyed': 'dispose',
 			'click a[data-setting="storage"]': 'showStorageSettings',
-			'click a[data-setting="window"]': 'showWindowSettings',
+			'click a[data-setting="monitor"]': 'showMonitorSettings',
 			'click a[data-setting="others"]': 'showOthersSettings',
 			'click a[data-button_name="save"]': 'saveConfig',
 			'click a[data-button_name="cancel"]': 'cancelConfig',
@@ -32,7 +32,7 @@ function(Backbone,lang,Handlebars)
 			delete this.options.electronConfigInterface;
 			
 			// this.storageSettingsPartialTemplate = JST['strut.electron_config/partials/LogoRowElectronConfigStorageSettings'];
-			// this.windowSettingsPartialTemplate =  JST['strut.electron_config/partials/LogoRowElectronConfigWindowSettings'];
+			// this.monitorSettingsPartialTemplate =  JST['strut.electron_config/partials/LogoRowElectronConfigMonitorSettings'];
 			// this.othersSettingsPartialTemplate =  JST['strut.electron_config/partials/LogoRowElectronConfigOthersSettings'];
 			
 			this.template = JST['strut.electron_config/ElectronConfigModal'];
@@ -44,6 +44,8 @@ function(Backbone,lang,Handlebars)
 			this.$el.html(this.template(
 			{
 				title: this.title,
+				storage: lang.electron_config_settings.storage,
+				monitor: lang.electron_config_settings.monitor,
 				save: this.save,
 				cancel: this.cancel,
 				partialTemplateToShow: this.partialTemplateToShow
@@ -58,55 +60,70 @@ function(Backbone,lang,Handlebars)
 			$storageAnchor.trigger("click");
 		},
 		
-		fillPartialDiv: function()
+		fillPartialDivWithStorageSettings: function()
 		{
 			let $targetDiv = this.$el.find('div[data-name="sidebarDependentContent"]');
-			let initialDivTemplateString = "{{> (lookup . 'partialTemplateToShow') }}";
-			let divTemplate = Handlebars.compile(initialDivTemplateString);
-			let finalDivHTML = divTemplate({'partialTemplateToShow': this.partialTemplateToShow});
-			$targetDiv.html(finalDivHTML);
+			let storageTemplate = JST['strut.electron_config/partials/LogoRowElectronConfigStorageSettings'];
+			let templateData = 
+			{
+				storage: lang.electron_config_settings.storage,
+				appDataFolder: lang.electron_config_settings.appDataFolder,
+				presentationFolder: lang.electron_config_settings.presentationFolder,
+				recentFileCount: lang.electron_config_settings.recentFileCount
+			};
+			let storageHTML = storageTemplate(templateData);
+			$targetDiv.html(storageHTML);
+		},
+		
+		fillPartialDivWithMonitorSettings: function()
+		{
+			let $targetDiv = this.$el.find('div[data-name="sidebarDependentContent"]');
+			let monitorTemplate = JST['strut.electron_config/partials/LogoRowElectronConfigMonitorSettings'];
+			let monitorHTML = monitorTemplate(
+			{
+				monitor: lang.electron_config_settings.monitor,
+				controlMonitor: lang.electron_config_settings.controlMonitor,
+				presentationMonitor: lang.electron_config_settings.presentationMonitor,
+				resolution: lang.electron_config_settings.resolution
+			});
+			$targetDiv.html(monitorHTML);
 		},
 		
 		showStorageSettings: function(evt)
 		{
 			this.$el.find('a[data-setting]').removeClass('current');
 			$(evt.currentTarget).addClass('current');
-			console.log("CURRENT ELEMENT = " + $(evt.currentTarget).prop("outerHTML"));
-			console.log("Storage Settings was clicked");
-			this.partialTemplateToShow = 'strut.electron_config/partials/LogoRowElectronConfigStorageSettings';
-			this.fillPartialDiv();
+			// console.log("CURRENT ELEMENT = " + $(evt.currentTarget).prop("outerHTML"));
+			// console.log("Storage Settings was clicked");
+			this.fillPartialDivWithStorageSettings();
 		},
 		
-		showWindowSettings: function(evt)
+		showMonitorSettings: function(evt)
 		{
 			this.$el.find('a[data-setting]').removeClass('current');
 			$(evt.currentTarget).addClass('current');
-			console.log("CURRENT ELEMENT = " + $(evt.currentTarget).prop("outerHTML"));
-			console.log("Window Settings was clicked");
-			this.partialTemplateToShow = 'strut.electron_config/partials/LogoRowElectronConfigWindowSettings';
-			this.fillPartialDiv();
+			// console.log("CURRENT ELEMENT = " + $(evt.currentTarget).prop("outerHTML"));
+			// console.log("Monitor Settings was clicked");
+			this.fillPartialDivWithMonitorSettings();
 		},
 		
 		showOthersSettings: function(evt)
 		{
-			// this.partialTemplateToShow = 'strut.electron_config/partials/LogoRowElectronConfigOthersSettings';
-			// this.render();
 			this.$el.find('a[data-setting]').removeClass('current');
 			$(evt.currentTarget).addClass('current');
-			console.log("CURRENT ELEMENT = " + $(evt.currentTarget).prop("outerHTML"));
-			console.log("Others Settings was clicked");
-			this.partialTemplateToShow = 'strut.electron_config/partials/LogoRowElectronConfigOthersSettings';
-			this.fillPartialDiv();
+			// console.log("CURRENT ELEMENT = " + $(evt.currentTarget).prop("outerHTML"));
+			// console.log("Others Settings was clicked");
+			this.fillPartialDivWithStorageSettings();
 		},
 		
 		saveConfig: function()
 		{
-			console.log("Save Config was clicked");
+			// console.log("Save Config was clicked");
 		},
 		
 		cancelConfig: function()
 		{
-			console.log("Cancel Config was clicked");
+			// console.log("Cancel Config was clicked");
 		}
 	});
 });

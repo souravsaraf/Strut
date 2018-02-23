@@ -1,0 +1,29 @@
+<h4 style="text-align:center">{{monitor}}</h4>
+
+<div class="flex-pinch-out">
+	<label>{{controlMonitor}}: </label>
+	<input data-id="controlMonitorName" class="width-auto" type="number" min="1" max="1" value="1">
+</div>
+
+<div class="flex-pinch-out">
+	<label>{{resolution}}: </label>
+	<span>
+		<input type="text" data-id="controlMonitorWidth" max-length="4" style="width: 4em;">
+		x
+		<input type="text" data-id="controlMonitorHeight" max-length="4" style="width: 4em;">
+	</span>
+</div>
+
+<div class="flex-pinch-out">
+	<label>{{presentationMonitor}}: </label>
+	<input data-id="presentationMonitorName" class="width-auto" type="number" min="1" max="1" value="1">
+</div>
+
+<div class="flex-pinch-out">
+	<label>{{resolution}}: </label>
+	<span>
+		<input type="text" data-id="presentationMonitorWidth" max-length="4" style="width: 4em;">
+		x
+		<input type="text" data-id="presentationMonitorHeight" max-length="4" style="width: 4em;">
+	</span>
+</div>

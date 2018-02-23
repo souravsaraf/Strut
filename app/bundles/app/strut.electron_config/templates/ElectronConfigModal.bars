@@ -9,8 +9,8 @@
 				<!--Sidebar content-->
 				<nav class="sidebarMenuList">
 					<ul class="nav nav-list">
-						<li><a href="#" data-setting="storage">Storage</a></li>
-						<li><a href="#" data-setting="window">Window</a></li>
+						<li><a href="#" data-setting="storage">{{storage}}</a></li>
+						<li><a href="#" data-setting="monitor">{{monitor}}</a></li>
 						<li><a href="#" data-setting="others">Others</a></li>
 					</ul>
 				</nav>
@@ -18,7 +18,8 @@
 			<div class="span10">
 				<!--Body content-->
 				<div class="container-fluid" data-name="sidebarDependentContent">
-					{{> (lookup . 'partialTemplateToShow') }}
+					<!--We Can Use Partial Template with a veriable name like this{{> (lookup . 'partialTemplateToShow') }}-->
+					<!--OR We can jut replace the entire DIVs InnerHTML using js-->
 				</div>
 			</div>
 		</div>

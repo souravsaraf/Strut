@@ -43,10 +43,16 @@
 .logoRow_configMenuItem .modal-body{
 	padding: 0px 15px 0px 0px;
 	width: 60vw;
+	height: 35vh;
+}
+
+.logoRow_configMenuItem .container-fluid {
+	height: 100%;
 }
 
 .logoRow_configMenuItem .display-flex {
 	display: flex;
+	height: 100%;
 }
 
 .logoRow_configMenuItem .sidebarMenuList {
@@ -76,6 +82,6 @@
 	align-items: center;
 }
 
-.logoRow_configMenuItem input[type="number"] {
+.logoRow_configMenuItem .width-auto{
 	width: auto;
 }

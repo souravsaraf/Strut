@@ -35,5 +35,17 @@ define({
 	background: 'Background',
 	surface: 'Surface',
 	configuration: 'Configuration',
-	cancel: 'Cancel'
+	cancel: 'Cancel',
+	browse: 'Browse',
+	electron_config_settings: 
+	{
+		storage: 'Storage',
+		monitor: 'Monitor',
+		appDataFolder: 'Strut AppData Folder',
+		presentationFolder: 'Strut Presentation Folder',
+		recentFileCount: 'Number of Recent Files',
+		controlMonitor: 'Control Monitor',
+		resolution: 'Enter Resolution (width x height)',
+		presentationMonitor: 'Presentation Monitor'
+	},
 });
