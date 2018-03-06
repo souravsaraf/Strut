@@ -46,6 +46,13 @@
 	height: 35vh;
 }
 
+.logoRow_configMenuItem .modal-footer .alert {
+	display: inline-block;
+	padding-top : 4px;
+	padding-bottom : 4px;
+	visibility: hidden;
+}
+
 .logoRow_configMenuItem .container-fluid {
 	height: 100%;
 }

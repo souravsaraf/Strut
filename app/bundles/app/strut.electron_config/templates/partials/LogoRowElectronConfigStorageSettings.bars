@@ -1,25 +1,16 @@
 <h4 style="text-align:center">{{storage}}</h4>
 <br>
-
-<div class="flex-pinch-out">
-	<label>{{appDataFolder}}: </label>
-	<div class="input-append">
-		<input type="text" data-id="AppDataFolderTextBox">
-		<button data-id="selectAppDataFolderButton" class="btn" type="button">Browse</button>
-		<input data-id="AppDataFolderFileInput" type="file" style="display: none;" webkitdirectory />
+<form data-id="storageForm">
+	<div class="flex-pinch-out">
+		<label>{{presentationFolder}}: </label>
+		<div class="input-append">
+			<input type="text" required readonly data-id="StrutPresentationsFolderTextBox">
+			<button data-id="selectStrutPresentationsFolderButton" class="btn" type="button">{{browse}}</button>
+		</div>
+	</div><br>
+	
+	<div class="flex-pinch-out">
+		<label>{{recentFileCount}}: </label>
+		<input type="number" required class="width-auto" data-id="RecentFilesCount" min="1" max="10" value="1">
 	</div>
-</div><br>
-
-<div class="flex-pinch-out">
-	<label>{{presentationFolder}}: </label>
-	<div class="input-append">
-		<input type="text" data-id="StrutPresentationsFolderTextBox">
-		<button data-id="selectStrutPresentationsFolderButton" class="btn" type="button">Browse</button>
-		<input data-id="StrutPresentationsFolderFileInput" type="file" style="display: none;" webkitdirectory />
-	</div>
-</div><br>
-
-<div class="flex-pinch-out">
-	<label>{{recentFileCount}}: </label>
-	<input class="width-auto" data-id="RecentFilesCount" type="number" min="1" max="10" value="1">
-</div>
+</form>

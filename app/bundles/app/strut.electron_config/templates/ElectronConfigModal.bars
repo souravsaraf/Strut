@@ -26,6 +26,9 @@
 	</div>
 </div>
 <div class="modal-footer">
+	<div class="alert">
+		<button class="close">×</button>
+	</div>
 	<a href="#" class="btn btn-primary ok btn-inverse" data-button_name="save">{{save}}</a>
 	<a href="#" class="btn btn-primary ok btn-inverse" data-button_name="cancel">{{cancel}}</a>
 </div>
