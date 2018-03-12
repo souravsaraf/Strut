@@ -1,11 +1,15 @@
-define(function () {
+define(function()
+{
 	var config = {
-		slide: {
-			size: {
+		slide:
+		{
+			size:
+			{
 				width: 1024,
 				height: 768
 			},
-			overviewSize: {
+			overviewSize:
+			{
 				width: 75,
 				height: 50
 			}
@@ -13,12 +17,15 @@ define(function () {
 	};
 
 	var temp = localStorage.getItem("Strut_sessionMeta");
-	try {
+	try
+	{
 		var sessionMeta = JSON.parse(temp);
-	} catch (e) {
 	}
+	catch (e)
+	{}
 
-	var sessionMeta = sessionMeta || {
+	var sessionMeta = sessionMeta ||
+	{
 		generator_index: 0
 	};
 

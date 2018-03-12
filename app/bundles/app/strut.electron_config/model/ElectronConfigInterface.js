@@ -1,5 +1,6 @@
 define([],
-	function() {
+	function()
+	{
 		'use strict';
 
 		/* 
@@ -20,23 +21,27 @@ define([],
 			{
 				"storage": {
 								"presentationFolder": "path/to/presentation/folder",
-								"recentFilesCount": 5
+								"recentFilesCount": 5,
+								"recentFilesList": []
 						   },
 				"monitor": {
-								"controlMonitor": "controlMonitorName",
+								"controlMonitor": 1,
 								"controlMonitorResolution": "1368x768",
-								"presentationMonitor": "presentationMonitorName",
+								"presentationMonitor": 1,
 								"presentationMonitorResolution": "2048 × 1080"
 						   }
 			}
 		*/
 
-		function ElectronConfigInterface() {
-			if (!(this instanceof ElectronConfigInterface)) {
+		function ElectronConfigInterface()
+		{
+			if (!(this instanceof ElectronConfigInterface))
+			{
 				throw new TypeError("ElectronConfigInterface constructor cannot be called as any regular function, u have to use the 'new' keyword.");
 			}
 
-			if (ElectronConfigInterface._instance) {
+			if (ElectronConfigInterface._instance)
+			{
 				//this allows the constructor to be called multiple times
 				//and refer to the same instance. Another option is to
 				//throw an error.
@@ -52,11 +57,13 @@ define([],
 
 		ElectronConfigInterface.prototype = {
 			constructor: ElectronConfigInterface,
-			getConfig: function() {
+			getConfig: function()
+			{
 				return this.localCopyOfElectronConfig;
 			},
 
-			setConfig: function(electronConfigJsonObject) {
+			setConfig: function(electronConfigJsonObject)
+			{
 				this.localCopyOfElectronConfig = electronConfigJsonObject;
 				window.electronConfig = this.localCopyOfElectronConfig;
 				let electron_config_settings = require('electron').remote.require('electron-settings');

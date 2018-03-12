@@ -15,4 +15,4 @@ psd-export/
 .tern-port
 electron_packager_output_directory/
 .jsbeautifyrc
-
+.eslintrc.json

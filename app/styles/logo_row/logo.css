@@ -1,94 +1,98 @@
 .logo {
-	width: 100px;
-	height: 32px;
-	margin-left: 5px;
-	padding: 0px 20px 0px 5px;
+    width: 100px;
+    height: 32px;
+    margin-left: 5px;
+    padding: 0px 20px 0px 5px;
 }
 
 .logo-bg {
-	background-image: url('styles/img/strut-logo-32-light.png');
-	display: inline-block;
-	width: 100px;
-	height: 32px;
+    background-image: url('styles/img/strut-logo-32-light.png');
+    display: inline-block;
+    width: 100px;
+    height: 32px;
 }
 
 .logo-holder {
-	margin-top: 0px;
-	margin-left: -8px;
+    margin-top: 0px;
+    margin-left: -8px;
 }
 
 .logo:hover {
-	background-position: 5px 0;
+    background-position: 5px 0;
 }
 
 .logo-group .logo .caret {
-	position: absolute;
-	right: 6px;
-	top: 5px;
-	border-top-color: #FFF;
-	border-bottom-color: #FFF;
+    position: absolute;
+    right: 6px;
+    top: 5px;
+    border-top-color: #FFF;
+    border-bottom-color: #FFF;
 }
 
 .logo-holder .dropdown-menu .label {
-	position: absolute;
-	right: 5px;
+    position: absolute;
+    right: 5px;
 }
 
 /* CSS styling for the LogoRow Configuration Menu Item */
-.logoRow_configMenuItem.modal{
-    transform: translateX(-50%) translateY(30%); /* bootstrap modal already has left as -50%, we are using that here */
-    margin-left: 0px; /*cancel the margin-left: -280px by bootstrap*/
-	width: auto; /* Overwriting the modal width of 560px given by bootstrap */
+
+.logoRow_configMenuItem.modal {
+    transform: translateX(-50%) translateY(30%);
+    /* bootstrap modal already has left as -50%, we are using that here */
+    margin-left: 0px;
+    /*cancel the margin-left: -280px by bootstrap*/
+    width: auto;
+    /* Overwriting the modal width of 560px given by bootstrap */
 }
-.logoRow_configMenuItem .modal-body{
-	padding: 0px 15px 0px 0px;
-	width: 60vw;
-	height: 35vh;
+
+.logoRow_configMenuItem .modal-body {
+    padding: 0px 15px 0px 0px;
+    width: 60vw;
+    height: 35vh;
 }
 
 .logoRow_configMenuItem .modal-footer .alert {
-	display: inline-block;
-	padding-top : 4px;
-	padding-bottom : 4px;
-	visibility: hidden;
+    display: inline-block;
+    padding-top: 4px;
+    padding-bottom: 4px;
 }
 
 .logoRow_configMenuItem .container-fluid {
-	height: 100%;
+    height: 100%;
 }
 
 .logoRow_configMenuItem .display-flex {
-	display: flex;
-	height: 100%;
+    display: flex;
+    height: 100%;
 }
 
 .logoRow_configMenuItem .sidebarMenuList {
-	height: 100%;
-	border-right: 1px solid #ddd;
+    height: 100%;
+    border-right: 1px solid #ddd;
 }
 
 .logoRow_configMenuItem .sidebarMenuList a {
-	color: #0088cc;
-	height: 4vh;
+    color: #0088cc;
+    height: 4vh;
 }
 
-.logoRow_configMenuItem .sidebarMenuList a:hover{
-	background-color: #eeeeee;
+.logoRow_configMenuItem .sidebarMenuList a:hover {
+    background-color: #eeeeee;
 }
 
-.logoRow_configMenuItem .sidebarMenuList a.current{
-	background-color: #eeeeee;
+.logoRow_configMenuItem .sidebarMenuList a.current {
+    background-color: #eeeeee;
 }
 
 .logoRow_configMenuItem .flex-pinch-out {
-	display: -webkit-flex;
-	display: flex;
-	-webkit-justify-content: space-between;
-	justify-content: space-between;
-	-webkit-align-items: center;
-	align-items: center;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+    -webkit-align-items: center;
+    align-items: center;
 }
 
-.logoRow_configMenuItem .width-auto{
-	width: auto;
+.logoRow_configMenuItem .width-auto {
+    width: auto;
 }

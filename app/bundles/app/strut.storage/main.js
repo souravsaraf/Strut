@@ -3,57 +3,77 @@ define(['./view/StorageModal',
 		'./model/StorageInterface',
 		'./model/ActionHandlers',
 		'tantaman/web/widgets/MenuItem',
-		'lang'],
-function(StorageModal,
+		'lang'
+	],
+	function(StorageModal,
 		SaveMenuItem,
 		StorageInterface,
 		ActionHandlers,
 		MenuItem,
-		lang) {
-	'use strict';
-	var storageInterface = null;
-	var storageModal = null;
-	var $modals = $('#modals');
-	
-	var service = {
-		createMenuItems: function(editorModel) {
-			var menuItems = [];
+		lang)
+	{
+		'use strict';
+		var storageInterface = null;
+		var storageModal = null;
+		var $modals = $('#modals');
 
-			if (storageModal == null) {
-				storageModal = new StorageModal({
-					editorModel: editorModel,
-					storageInterface: storageInterface
-				});
-				storageModal.render();
-				$modals.append(storageModal.$el);
+		var service = {
+			createMenuItems: function(editorModel)
+			{
+				var menuItems = [];
+
+				if (storageModal == null)
+				{
+					storageModal = new StorageModal(
+					{
+						editorModel: editorModel,
+						storageInterface: storageInterface
+					});
+					storageModal.render();
+					$modals.append(storageModal.$el);
+				}
+
+				menuItems.push(new MenuItem(
+				{
+					title: lang.new_,
+					handler: ActionHandlers.new_,
+					model: editorModel
+				}));
+				menuItems.push(new MenuItem(
+				{
+					title: lang.open,
+					modal: storageModal,
+					handler: ActionHandlers.open
+				}));
+
+				menuItems.push(new SaveMenuItem(storageModal, editorModel, storageInterface));
+				menuItems.push(new MenuItem(
+				{
+					title: lang.save_as,
+					modal: storageModal,
+					handler: ActionHandlers.save
+				}));
+				return menuItems;
 			}
+		};
 
-			menuItems.push(new MenuItem({ title: lang.new_, handler: ActionHandlers.new_, model: editorModel }));
-			menuItems.push(new MenuItem({ title: lang.open, modal: storageModal, handler: ActionHandlers.open }));
+		return {
+			// TODO: break strut dependencies!
+			initialize: function(registry)
+			{
+				storageInterface = new StorageInterface(registry);
+				registry.register(
+				{
+					// TODO: shouldn't be logomenuitemprovider
+					// should be brought into the logo
+					// based on its capabilities
+					interfaces: 'strut.LogoMenuItemProvider'
+				}, service);
 
-			menuItems.push(new SaveMenuItem(storageModal, editorModel, storageInterface));
-			menuItems.push(new MenuItem({title: lang.save_as, modal: storageModal, handler: ActionHandlers.save }));
-
-			
-
-			return menuItems;
+				registry.register(
+				{
+					interfaces: 'strut.StorageInterface'
+				}, storageInterface);
+			}
 		}
-	};
-
-	return {
-		// TODO: break strut dependencies!
-		initialize: function(registry) {
-			storageInterface = new StorageInterface(registry);
-			registry.register({
-				// TODO: shouldn't be logomenuitemprovider
-				// should be brought into the logo
-				// based on its capabilities
-				interfaces: 'strut.LogoMenuItemProvider'
-			}, service);
-
-			registry.register({
-				interfaces: 'strut.StorageInterface'
-			}, storageInterface);
-		}
-	}
-});
+	});
