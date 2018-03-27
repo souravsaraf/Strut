@@ -1,5 +1,5 @@
-define(['backbone', 'css!styles/widgets/fileBrowser.css'],
-	function(Backbone, empty)
+define(['backbone', 'lang', 'css!styles/widgets/fileBrowser.css'],
+	function(Backbone, lang, empty)
 	{
 		return Backbone.View.extend(
 		{
@@ -8,7 +8,8 @@ define(['backbone', 'css!styles/widgets/fileBrowser.css'],
 				destroyed: 'dispose',
 				'click li[data-filename]': '_fileClicked',
 				'click button.close': '_deleteClicked',
-				'dblclick li[data-filename]': '_fileChosen'
+				'dblclick li[data-filename]': '_fileChosen',
+				'click button[data-id="browsePresentationFileButton"]': 'browseFile'
 			},
 
 			className: "fileBrowser",
@@ -18,7 +19,7 @@ define(['backbone', 'css!styles/widgets/fileBrowser.css'],
 				this.render = this.render.bind(this);
 				this.storageInterface.on("change:currentProvider", this.render);
 
-				this.template = JST['tantaman.web.widgets/FileBrowser'];
+				this.template = JST['tantaman.web.widgets/FileBrowserElectron'];
 
 				this.renderListing = this.renderListing.bind(this);
 			},
@@ -84,12 +85,54 @@ define(['backbone', 'css!styles/widgets/fileBrowser.css'],
 					{
 						self.$el.find('.browserContent').html(self.template(
 						{
+							browse: lang.browse,
 							files: list
 						}));
 						self.$fileName = self.$el.find('.fileName');
 						self.$fileName.val(folder);
 					}
 				});
+			},
+
+			browseFile: function()
+			{
+				const
+				{
+					dialog
+				} = require("electron").remote;
+				if (this.action == "open")
+				{
+					let pathArray = dialog.showOpenDialog(
+					{
+						defaultPath: window.electronConfig.storage.presentationFolder,
+						filters: [
+						{
+							name: "Strut Presentations",
+							extensions: ['strut']
+						}],
+						properties: ["openFile"]
+					});
+					if (typeof pathArray != "undefined" && pathArray != null && pathArray.length != null && pathArray.length > 0)
+					{
+						this.$fileName.val(pathArray[0]);
+					}
+				}
+				else
+				{
+					let saveFileName = dialog.showSaveDialog(
+					{
+						defaultPath: window.electronConfig.storage.presentationFolder,
+						filters: [
+						{
+							name: "Strut Presentations",
+							extensions: ['strut']
+						}],
+					});
+					if (saveFileName)
+					{
+						this.$fileName.val(saveFileName);
+					}
+				}
 			},
 
 			fileName: function()

@@ -88,6 +88,7 @@ app.on('window-all-closed', function()
 {
 	if (process.platform != 'darwin')
 	{
+		console.log("All windows are closed");
 		app.quit();
 	}
 });
@@ -126,7 +127,7 @@ app.on('ready', function()
 		mainWindow.webContents.reload();
 	});
 
-	mainWindow.on('closed', function()
+	mainWindow.on('close', function(e)
 	{
 		electronLocalshortcut.unregisterAll(mainWindow);
 		mainWindow = null;

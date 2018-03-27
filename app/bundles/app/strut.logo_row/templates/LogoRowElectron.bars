@@ -23,4 +23,11 @@
 	</li>
 	<li class="dropdown active" data-menu_item="configuration">
 	</li>
+	<li class="dropdown active">
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+			Library<b class="caret"></b>
+		</a>
+		<ul class="dropdown-menu" data-menu_item="library">
+		</ul>
+	</li>
 </ul>

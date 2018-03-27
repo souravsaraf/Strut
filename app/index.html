@@ -1,41 +1,44 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <META HTTP-EQUIV="Cache-Control" CONTENT="max-age=0">
-        <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache">
-        <META http-equiv="expires" content="0">
-        <META HTTP-EQUIV="Expires" CONTENT="Tue, 01 Jan 1980 1:00:00 GMT">
-        <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
-        <title>Strut - Beta</title>
-        <!-- build:css styles/main.css -->
-        <link rel="stylesheet" href="components/bootstrap/css/bootstrap.css">
-        </link>
-        <link rel="stylesheet" href="components/bootstrap/css/bootstrap-responsive.css">
-        </link>
-        <link href='preview_export/css/web-fonts.css' rel='stylesheet' type='text/css'>
-        </link>
-        <link href='components/etch/etch.css' rel='stylesheet' type='text/css'>
-        </link>
-        <link href='components/spectrum/spectrum.css' rel='stylesheet' type='text/css'>
-        </link>
-        <link rel="stylesheet" type="text/css" href="styles/close-btn.css" />
-        <link rel="stylesheet" type="text/css" href="styles/main.css" />
-        <link rel="stylesheet" href="preview_export/css/themes/default-reset.css">
-        </link>
-        <!-- endbuild -->
-        <!-- can't build this in due to font imports -->
-        <link rel="stylesheet" href="preview_export/reveal/css/theme/default.css">
-        </link>
-        <link rel="shortcut icon" href="img/strut-icon.png">
-        <link rel="apple-touch-icon-precomposed" href="img/strut-touch.png">
-        <link rel="stylesheet" type="text/css" href="styles/built.css">
-        </link>
-        <script type="text/javascript" src="preview_export/download_assist/swfobject.js"></script>
 
-    </head>
-    <body class="bg-default">
-        <!--[IF IE]>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <META HTTP-EQUIV="Cache-Control" CONTENT="max-age=0">
+    <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache">
+    <META http-equiv="expires" content="0">
+    <META HTTP-EQUIV="Expires" CONTENT="Tue, 01 Jan 1980 1:00:00 GMT">
+    <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+    <title>Strut - Beta</title>
+    <!-- build:css styles/main.css -->
+    <link rel="stylesheet" href="components/bootstrap/css/bootstrap.css">
+    </link>
+    <link rel="stylesheet" href="components/bootstrap/css/bootstrap-responsive.css">
+    </link>
+	<link rel="stylesheet" href="components/flexdatalist/css/jquery.flexdatalist.min.css">
+    </link>
+    <link href='preview_export/css/web-fonts.css' rel='stylesheet' type='text/css'>
+    </link>
+    <link href='components/etch/etch.css' rel='stylesheet' type='text/css'>
+    </link>
+    <link href='components/spectrum/spectrum.css' rel='stylesheet' type='text/css'>
+    </link>
+    <link rel="stylesheet" type="text/css" href="styles/close-btn.css" />
+    <link rel="stylesheet" type="text/css" href="styles/main.css" />
+    <link rel="stylesheet" href="preview_export/css/themes/default-reset.css">
+    </link>
+    <!-- endbuild -->
+    <!-- can't build this in due to font imports -->
+    <link rel="stylesheet" href="preview_export/reveal/css/theme/default.css">
+    </link>
+    <link rel="shortcut icon" href="img/strut-icon.png">
+    <link rel="apple-touch-icon-precomposed" href="img/strut-touch.png">
+    <link rel="stylesheet" type="text/css" href="styles/built.css">
+    </link>
+    <script type="text/javascript" src="preview_export/download_assist/swfobject.js"></script>
+</head>
+
+<body class="bg-default">
+    <!--[IF IE]>
         <div class="container">
             <div class="alert alert-success">
                 Internet Explorer does not support the 3-D transitions required by <strong>Strut</strong>.
@@ -49,154 +52,88 @@
             </div>
         </div>
         <![endif]-->
-        <script>
-            window.isOptimized = false;
-            if (!Function.prototype.bind) {
-            	Function.prototype.bind = function (oThis) {
-            		if (typeof this !== "function") {
-            			// closest thing possible to the ECMAScript 5 internal IsCallable function
-            			throw new TypeError("Function.prototype.bind - what is trying to be bound is not callable");
-            		}
+    <script>
+        window.isOptimized = false;
+        if (!Function.prototype.bind) {
+            Function.prototype.bind = function(oThis) {
+                if (typeof this !== "function") {
+                    // closest thing possible to the ECMAScript 5 internal IsCallable function
+                    throw new TypeError("Function.prototype.bind - what is trying to be bound is not callable");
+                }
 
-            		var aArgs = Array.prototype.slice.call(arguments, 1),
-            		fToBind = this,
-            		fNOP = function () {},
-            		fBound = function () {
-            			return fToBind.apply(this instanceof fNOP && oThis
-            				? this
-            				: oThis,
-            				aArgs.concat(Array.prototype.slice.call(arguments)));
-            			};
+                var aArgs = Array.prototype.slice.call(arguments, 1),
+                    fToBind = this,
+                    fNOP = function() {},
+                    fBound = function() {
+                        return fToBind.apply(this instanceof fNOP && oThis ?
+                            this :
+                            oThis,
+                            aArgs.concat(Array.prototype.slice.call(arguments)));
+                    };
 
-            			fNOP.prototype = this.prototype;
-            			fBound.prototype = new fNOP();
+                fNOP.prototype = this.prototype;
+                fBound.prototype = new fNOP();
 
-            			return fBound;
-            		};
-            	}
+                return fBound;
+            };
+        }
 
-            	if (!Array.prototype.some) {
-            		Array.prototype.some = function(fun /*, thisp */) {
-            			'use strict';
+        if (!Array.prototype.some) {
+            Array.prototype.some = function(fun /*, thisp */ ) {
+                'use strict';
 
-            			if (this == null) {
-            				throw new TypeError();
-            			}
+                if (this == null) {
+                    throw new TypeError();
+                }
 
-            			var thisp, i,
-            			t = Object(this),
-            			len = t.length >>> 0;
-            			if (typeof fun !== 'function') {
-            				throw new TypeError();
-            			}
+                var thisp, i,
+                    t = Object(this),
+                    len = t.length >>> 0;
+                if (typeof fun !== 'function') {
+                    throw new TypeError();
+                }
 
-            			thisp = arguments[1];
-            			for (i = 0; i < len; i++) {
-            				if (i in t && fun.call(thisp, t[i], i, t)) {
-            					return true;
-            				}
-            			}
-
-            			return false;
-            		};
-            	}
-
-            	if (!Array.prototype.forEach) {
-            		Array.prototype.forEach = function (fn, scope) {
-            			'use strict';
-            			var i, len;
-            			for (i = 0, len = this.length; i < len; ++i) {
-            				if (i in this) {
-            					fn.call(scope, this[i], i, this);
-            				}
-            			}
-            		};
-            	}
-
-            	var head = document.getElementsByTagName('head')[0];
-            	function appendScript(src) {
-            		var s = document.createElement("script");
-            		s.type = "text/javascript";
-            		s.src = src;
-            		head.appendChild(s);
-            	}
-
-            	if (window.location.href.indexOf("preview=true") == -1) {
-            		window.dlSupported = 'download' in document.createElement('a');
-            		window.hasFlash = swfobject.hasFlashPlayerVersion(9);
-            		if (!dlSupported && window.hasFlash) {
-            			appendScript('preview_export/download_assist/downloadify.min.js');
-            		}
-            	}
-
-        </script>
-        <!-- ATTACHING MUTATIONOBSERVER which is basically a DOM Event Listener -->
-        <script type="text/javascript">
-        /*var observer = new MutationObserver(function(mutations)
-        {
-        var count = 0;
-        var flag = false;
-        mutations.forEach(function(mutation)
-        {
-            console.log('Mutation type : ' + mutation.type);
-            // DOM Tree Modified
-            if (mutation.type == 'childList' || mutation.type == 'subtree')
-            {
-                count++;
-                // Nodes Added
-                if (mutation.addedNodes.length >= 1)
-                {
-                    for (let i = 0; i < mutation.addedNodes.length; i++)
-                    {
-                        var node = mutation.addedNodes[i];
-                        if (node.nodeName != '#text')
-                        {
-                            console.log('Added ' + node.tagName + ' tag.');
-                            //console.dir(node);
-                            console.log("Class of the added element is : " + node.classList);
-                            //if (!flag && node.classList == "container-fluid")
-                            //{
-                            //    flag = true;
-                            //}
-                            //if (flag)
-                            //{
-                            //    if (confirm("Prompt " + count + " Continue Loading Page?") == true)
-                            //    {;
-                            //    }
-                            //    else
-                            //    {
-                            //        window.stop();
-                            //    }
-                            //}
-                        }
+                thisp = arguments[1];
+                for (i = 0; i < len; i++) {
+                    if (i in t && fun.call(thisp, t[i], i, t)) {
+                        return true;
                     }
                 }
-                // Nodes Removed
-                else if (mutation.removedNodes.length >= 1)
-                {
-                    console.log('REMOVED' + mutation.removedNodes[0].tagName + ' tag. Click Below for Details : ');
-                    //console.dir(mutation.removedNodes[0]);
+
+                return false;
+            };
+        }
+
+        if (!Array.prototype.forEach) {
+            Array.prototype.forEach = function(fn, scope) {
+                'use strict';
+                var i, len;
+                for (i = 0, len = this.length; i < len; ++i) {
+                    if (i in this) {
+                        fn.call(scope, this[i], i, this);
+                    }
                 }
-            }
-            // Attributes changed roughly CSS changed
-            else if (mutation.type == 'attributes')
-            {
-                console.log('Modified class , New classes are : ' + mutation.target.class);
-            }
-        });
-        });
+            };
+        }
 
-        var observerConfig = {
-        childList: true,
-        subtree: true
-        };
+        var head = document.getElementsByTagName('head')[0];
 
-        // Listen to all changes to body and child nodes
-        var targetNode = document.getElementsByTagName('body')[0];
-        observer.observe(targetNode, observerConfig);
-		*/
-        </script>
-		<!--
+        function appendScript(src) {
+            var s = document.createElement("script");
+            s.type = "text/javascript";
+            s.src = src;
+            head.appendChild(s);
+        }
+
+        if (window.location.href.indexOf("preview=true") == -1) {
+            window.dlSupported = 'download' in document.createElement('a');
+            window.hasFlash = swfobject.hasFlashPlayerVersion(9);
+            if (!dlSupported && window.hasFlash) {
+                appendScript('preview_export/download_assist/downloadify.min.js');
+            }
+        }
+    </script>
+    <!--
 		Below was the code used earlier by tantaman. But it worked only for website , not for electron.
 		
 		<script data-main="scripts/main" src="scripts/require.js"></script>
@@ -210,60 +147,57 @@
 		<script>require(["scripts/main"])</script>
 		The two forms are both asynchronous. This is really all there is to it.
 		-->
-		<script>
-			window.isElectron = function isElectron() 
-			{
-				return navigator.userAgent.indexOf('Electron') !== -1;
-			};
-			if(isElectron())
-			{
-				// In electron, we can configure requirejs to require() from its configuration and then search node's modules. 
-				// We do it by adding 'nodeRequire' to require js config.
-				// Now our require variable is defined and it searches both. 
-				// Next we use our scripts/main which contains require js config object for the website by adding '<script>require(["scripts/main"])' to the DOM. We dont need '<script src=scripts/libs/require.js>' because our require is already defined.
-				console.log("Running Strut's Electron App");
-				window.node_require = window.require;
-				console.log("window.node_require and node_require are equal? " + (window.node_require === node_require));
-				console.log("window.node_require and window.require are equal? " + (window.node_require === window.require));
-				console.log("window.require and require are equal? " + (window.require === require));
-				// Check if a core node module is available on the client side
-				// const querystring = require('querystring');
-				// console.log("Logging QueryString module");
-				// console.dir(querystring);
-				window.requirejs = require('requirejs');
-				window.requirejs.s.contexts._.config.nodeRequire = require;
-				// Find Base path of the app
-				// const remote = require('remote');
-				// const app = remote.require('app');
-				// var basepath = app.getAppPath();
-				// console.log("Base Path : " + basepath);
-				
-				 window.require = window.requirejs;
-				 
-				// Check if a core node module is available on the client side
-				// const querystring = require('querystring');
-				// console.log("Logging QueryString module");
-				// console.dir(querystring);
-				var dataMainScript = document.createElement("script");
-				dataMainScript.text = 'require(["scripts/main"])';
-				var currentNode = document.currentScript;
-				currentNode.parentNode.insertBefore(dataMainScript, currentNode.nextSibling);
-			}
-			else
-			{
-				// Adding '<script data-main="scripts/main" src="scripts/require.js">' programmatically. As it was for the website earlier.
-				console.log("Running Strut's Web App in Browser");
-				var currentNode = document.currentScript;
-				var currentNodeNextSibling = document.currentScript.nextSibling;
-				var requireJSScript = document.createElement("script");
-				requireJSScript.src = "scripts/libs/require.js";
-				requireJSScript.setAttribute('data-main' , 'scripts/main');
-				currentNode.parentNode.insertBefore(requireJSScript, currentNodeNextSibling);
-			}
-		</script>
-        <!--script type="text/javascript" data-main="scripts/main" src="scripts/libs/require.js"></script-->
-        <div id="modals">
-        </div>
-        <script src="//localhost:35729/livereload.js"></script>
-    </body>
+    <script>
+        window.isElectron = function isElectron() {
+            return navigator.userAgent.indexOf('Electron') !== -1;
+        };
+        if (isElectron()) {
+            // In electron, we can configure requirejs to require() from its configuration and then search node's modules. 
+            // We do it by adding 'nodeRequire' to require js config.
+            // Now our require variable is defined and it searches both. 
+            // Next we use our scripts/main which contains require js config object for the website by adding '<script>require(["scripts/main"])' to the DOM. We dont need '<script src=scripts/libs/require.js>' because our require is already defined.
+            console.log("Running Strut's Electron App");
+            window.node_require = window.require;
+            // console.log("window.node_require and node_require are equal? " + (window.node_require === node_require));
+            // console.log("window.node_require and window.require are equal? " + (window.node_require === window.require));
+            // console.log("window.require and require are equal? " + (window.require === require));
+            // Check if a core node module is available on the client side
+            // const querystring = require('querystring');
+            // console.log("Logging QueryString module");
+            // console.dir(querystring);
+            window.requirejs = require('requirejs');
+            window.requirejs.s.contexts._.config.nodeRequire = window.node_require;
+            // Find Base path of the app
+            // const remote = require('remote');
+            // const app = remote.require('app');
+            // var basepath = app.getAppPath();
+            // console.log("Base Path : " + basepath);
+
+            window.require = window.requirejs;
+
+            // Check if a core node module is available on the client side
+            // const querystring = require('querystring');
+            // console.log("Logging QueryString module");
+            // console.dir(querystring);
+            var dataMainScript = document.createElement("script");
+            dataMainScript.text = 'require(["scripts/main"])';
+            var currentNode = document.currentScript;
+            currentNode.parentNode.insertBefore(dataMainScript, currentNode.nextSibling);
+        } else {
+            // Adding '<script data-main="scripts/main" src="scripts/require.js">' programmatically. As it was for the website earlier.
+            console.log("Running Strut's Web App in Browser");
+            var currentNode = document.currentScript;
+            var currentNodeNextSibling = document.currentScript.nextSibling;
+            var requireJSScript = document.createElement("script");
+            requireJSScript.src = "scripts/libs/require.js";
+            requireJSScript.setAttribute('data-main', 'scripts/main');
+            currentNode.parentNode.insertBefore(requireJSScript, currentNodeNextSibling);
+        }
+    </script>
+    <!--script type="text/javascript" data-main="scripts/main" src="scripts/libs/require.js"></script-->
+    <div id="modals">
+    </div>
+    <script src="//localhost:35729/livereload.js"></script>
+</body>
+
 </html>

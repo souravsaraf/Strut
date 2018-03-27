@@ -1,0 +1,10 @@
+{
+	"files.exclude": {
+		"**/node_modules": true, // this excludes all folders 
+		// named "node_modules" from 
+		// the explore tree
+		"electron_packager_output_directory": true // this excludes the folder 
+		// "electron_packager_output_directory" only from the root of
+		// your workspace 
+	}
+}

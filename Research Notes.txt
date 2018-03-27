@@ -1,0 +1,64 @@
+Ways to organize slides : 
+
+Refer to Windows Smart Art (Open MS PPT ----> Insert ----> Smart Art)
+
+Referring http://thevisualcommunicationguy.com/2013/07/20/the-five-and-only-five-ways-to-orgaize-information/
+
+By location : Think of a history class and Every continent is a slide OR
+	      Think of a biology class and main part of human body are slides
+
+By Time :     A timeline from 1900-2010 and every decade is a slide. (SAME as sequence)
+
+By categories
+
+By Hierarchy
+
+By Tables
+
+By groups : A logical grouping (similar to phsyical grouping like folders).
+
+NESTED Example : A group of hierarchies , or a hierarchy of groups , a sequence of hierarchies , a hierarchy of sequences etc etc.
+
+TASKS TO DO : 
+
+1. Assign a small symbol to each of the above "container" and then on clicking them, it open the slides for preview within the "container".
+2. Manage the Logical File System (the containers and groups etc).
+
+3. Store the ppt slides as a Table with the filename as column ID , and 5 "next slides" as 5 more columns next1 , next2 ... next5. 
+These will be use to store the history for slide suggestion. 
+
+
+Questions for prof. : 
+
+Q1. What software were you using when u showed it to me the other day?
+
+Q2. How much part of a presentation software is the target? A whole MS PPT is too big , or minimum with enuf features for demonstration?
+    Should i make a desktop software , or a browser HTML client sw. Java / c# or HTMl5 with js. Portable? ANY SPECIFICS U SUGGEST? 
+
+Implementation :----------
+
+impress.js with Struts and many more are there. But Struts is the most mature , cleanly documented. 
+
+reveal.js with Slides.com ,  (Not opensource). 
+Reveal.js has few online GUI editors (like https://github.com/leejaen/react-lz-editor is pretty impressive), but they are pretty immature / less contributors / less documentation for understanding etc. 
+Tbh, Slides.com is insane. Therefore cannot say reveal.js is any less compared to impress.js.
+
+bespoke.js
+
+
+Figure out how a single slide will be stored in memory , Then only u can create a library of slides. 
+
+Library top menu item
+View Library
+Add this slide to Library
+Import Library
+Export Library
+
+In the Add slide to library menu, Each slide will have options like 
+1. Which slide(s) [example slides 12 to 18] to add to the Library.
+2. Slide Organization (How to organize this slide?) As hierarchy , sequence , organize by location etc. 
+3. Slide Flow (The order of flow for the slides.) [show preview of each slide , then show the total flow preview].
+
+TODO ----> 
+
+First thing u ll do is setup the Strut offline (run as local server) , Then test the pen input. 

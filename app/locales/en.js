@@ -39,6 +39,10 @@ define(
 	configuration: "Configuration",
 	cancel: "Cancel",
 	browse: "Browse",
+	clear: "Clear",
+	invalid_form_input: "Form has invalid inputs",
+	insert_successful: "Insert Successful",
+	update_successful: "Update Successful",
 	electron_config_settings:
 	{
 		storage: "Storage",
@@ -48,7 +52,21 @@ define(
 		controlMonitor: "Control Monitor",
 		resolution: "Enter Resolution (width x height)",
 		presentationMonitor: "Presentation Monitor",
-		invalid_form_input: "From has invalid inputs",
 		config_saved_success: "Configuration saved successfully"
-	}
+	},
+	tagLibrary:
+	{
+		viewLibrary: "View Library",
+		addToLibrary: "Add To Library",
+		importLibrary: "Import Library",
+		exportLibrary: "Export Library",
+		filename: "File Name",
+		presentationtitle: "Presentation Title",
+		tags: "Tags",
+		clearAllTags: "Clear Tags",
+		autoGenerateTags: "Auto-generate Tags",
+		addTagsMessage: "Add tags and press enter",
+		min3Tags: "Minimum 3 Tags needed"
+	},
+	file: "File",
 });

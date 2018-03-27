@@ -1,0 +1,11 @@
+
+<div class="form-inline flex-pinch-out">
+	<input type="text" readonly class="fileName input-block-level"></input>
+	&nbsp;
+	<button data-id="browsePresentationFileButton" class="btn" type="button">{{browse}}</button>
+</div>
+<ul class="nav nav-pills nav-stacked">
+	{{#files}}
+	<li data-fileName="{{.}}"><a>{{.}} <button class="close pull-right">×</button></a></li>
+	{{/files}}
+</ul>

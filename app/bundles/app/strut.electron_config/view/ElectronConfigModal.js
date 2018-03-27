@@ -53,7 +53,7 @@ define(["backbone", "lang"], function(Backbone, lang)
 			this.template = JST["strut.electron_config/ElectronConfigModal"];
 			this.partialTemplateToShow = "strut.electron_config/partials/LogoRowElectronConfigStorageSettings";
 			this.currentFormID = "storageForm";
-			this.error_msg = lang.electron_config_settings.invalid_form_input;
+			this.error_msg = lang.invalid_form_input;
 			this.success_msg = lang.electron_config_settings.config_saved_success;
 		},
 		render: function()
@@ -102,6 +102,7 @@ define(["backbone", "lang"], function(Backbone, lang)
 			let currentInput = evt.currentTarget;
 			currentInput.checkValidity();
 		},
+
 		// SIDEBAR NAVIGATION EVENTS
 		showStorageSettings: function(evt)
 		{
@@ -191,6 +192,7 @@ define(["backbone", "lang"], function(Backbone, lang)
 			currentForm.find('input[data-id="presentationMonitorWidth"]').val(currentConfig.monitor.presentationMonitorResolution.split("x")[0]);
 			currentForm.find('input[data-id="presentationMonitorHeight"]').val(currentConfig.monitor.presentationMonitorResolution.split("x")[1]);
 		},
+
 		// STORAGE SETTINGS EVENT HANDLERS:
 		selectStrutPresentationDataFolder: function()
 		{

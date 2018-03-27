@@ -3,14 +3,21 @@
   "version": "0.4.0",
   "main": "main.js",
   "dependencies": {
+    "better-sqlite3": "^4.1.0",
     "electron-localshortcut": "^3.1.0",
     "electron-settings": "^3.1.4",
+    "html-to-text": "^4.0.0",
     "isbinaryfile": "^3.0.2",
-    "requirejs": "^2.3.5"
+    "nlcst-to-string": "^2.0.1",
+    "requirejs": "^2.3.5",
+    "retext": "^5.0.0",
+    "retext-keywords": "^4.0.1",
+    "to-vfile": "^2.2.0"
   },
   "devDependencies": {
-    "electron": "^1.8.2",
-    "electron-packager": "^10.1.2",
+    "electron": "^1.8.4",
+    "electron-packager": "^11.1.0",
+    "electron-rebuild": "^1.7.3",
     "grunt": "^0.4.5",
     "grunt-contrib-clean": "~0.4.1",
     "grunt-contrib-concat": "~0.3.0",

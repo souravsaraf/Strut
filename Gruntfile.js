@@ -1,8 +1,9 @@
 // Generated on 2013-02-27 using generator-webapp 0.1.5
 'use strict';
 //var lrSnippet = require('grunt-contrib-livereload/lib/utils').livereloadSnippet;
-var mountFolder = function (connect, dir) {
-  return connect.static(require('path').resolve(dir));
+var mountFolder = function(connect, dir)
+{
+	return connect.static(require('path').resolve(dir));
 };
 
 // # Globbing
@@ -11,22 +12,21 @@ var mountFolder = function (connect, dir) {
 // use this if you want to match all subfolders:
 // 'test/spec/**/*.js'
 
-module.exports = function (grunt) {
-  // load all grunt tasks
-  require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
+module.exports = function(grunt)
+{
+	// load all grunt tasks
+	require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
-  // configurable paths
-  var yeomanConfig = {
-    app: 'app',
-    dist: 'dist'
-  };
+	// configurable paths
+	var yeomanConfig = {
+		app: 'app',
+		dist: 'dist'
+	};
 
-  var barstaskdef =
-	{
+	var barstaskdef = {
 		files:
 		{
-			"app/scripts/compiled-templates.js":
-			[
+			"app/scripts/compiled-templates.js": [
 				"app/bundles/**/templates/*.bars",
 				"app/bundles/**/partials/*.bars"
 			]
@@ -42,368 +42,440 @@ module.exports = function (grunt) {
 			processName: function(filename)
 			{
 				return filename
-				.replace(/^app\//, '')
-				.replace(/\.bars$/, '')
-				.replace('bundles/', '')
-				.replace('app/', '') // TODO: just make a regex once moving is complete
-				.replace('common/', '') // see above todo
-				.replace('templates/', '');
+					.replace(/^app\//, '')
+					.replace(/\.bars$/, '')
+					.replace('bundles/', '')
+					.replace('app/', '') // TODO: just make a regex once moving is complete
+					.replace('common/', '') // see above todo
+					.replace('templates/', '');
 			},
 			processPartialName: function(filename)
-			{  
+			{
 				return filename
-				.replace(/^app\//, '')
-				.replace(/\.bars$/, '')
-				.replace('bundles/', '')
-				.replace('app/', '') // TODO: just make a regex once moving is complete
-				.replace('common/', '') // see above todo
-				.replace('templates/', '');
+					.replace(/^app\//, '')
+					.replace(/\.bars$/, '')
+					.replace('bundles/', '')
+					.replace('app/', '') // TODO: just make a regex once moving is complete
+					.replace('common/', '') // see above todo
+					.replace('templates/', '');
 			}
 		}
 	};
 
-  grunt.initConfig({
-	    // Building Electron app
-  'electron-packager': {
-      buildWindows: {
-        options:{
-          platform        : 'win32',
-          arch            : 'ia32',
-          dir             : '.', // The source directory of the app. Its actually the directory where the package.json file is located.
-          out             : 'electron_packager_output_directory', // the output directory for electron packages
-          icon            : '<%= yeoman.app %>/img/strut_icon_96.ico', // The path to the .ico file as the icon of the application
-          name            : 'Strut', // The application name
-          ignore          : '.git', // One or more additional regular expression patterns which specify which files to ignore when copying files to create the app bundle(s)
-          asar            : false, // (boolean or object) Whether to package the application's source code into an archive
-          overwrite       : true // (boolean) Whether to replace an already existing output directory for a given platform
-        }
-      },
-	  buildCustom: {
-        options: function (name,platform,arch) {
-          return {
-            platform,
-            arch,
-            dir       : '.',
-            out       : 'electron_packager_output_directory',
-            icon      : '<%= yeoman.app %>/img/strut_icon_96.ico',
-            name      : 'Strut',
-            ignore    : '.git',
-            asar      : false,
-            overwrite : true
-          }
-        }
-	  }
-	},
-    yeoman: yeomanConfig,
+	grunt.initConfig(
+	{
+		// Building Electron app
+		'electron-packager':
+		{
+			buildWindows:
+			{
+				options:
+				{
+					platform: 'win32',
+					arch: 'x64',
+					dir: '.', // The source directory of the app. Its actually the directory where the package.json file is located.
+					out: 'electron_packager_output_directory', // the output directory for electron packages
+					icon: '<%= yeoman.app %>/img/strut_icon_96.ico', // The path to the .ico file as the icon of the application
+					name: 'Strut', // The application name
+					ignore: '.git', // One or more additional regular expression patterns which specify which files to ignore when copying files to create the app bundle(s)
+					asar: false, // (boolean or object) Whether to package the application's source code into an archive
+					overwrite: true // (boolean) Whether to replace an already existing output directory for a given platform
+				}
+			},
+			buildCustom:
+			{
+				options: function(name, platform, arch)
+				{
+					return {
+						platform,
+						arch,
+						dir: '.',
+						out: 'electron_packager_output_directory',
+						icon: '<%= yeoman.app %>/img/strut_icon_96.ico',
+						name: 'Strut',
+						ignore: '.git',
+						asar: false,
+						overwrite: true
+					}
+				}
+			}
+		},
+		yeoman: yeomanConfig,
 
-    handlebars: {
-      compile: barstaskdef
-    },
+		handlebars:
+		{
+			compile: barstaskdef
+		},
 
-    replace: {
-      compile: {
-        src: ['dist/index.html'],
-        overwrite: true,                 // overwrite matched source files
-        replacements: [{
-          from: "window.isOptimized = false;",
-          to: "window.isOptimized = true;"
-        }]
-      }
-    },
+		replace:
+		{
+			compile:
+			{
+				src: ['dist/index.html'],
+				overwrite: true, // overwrite matched source files
+				replacements: [
+				{
+					from: "window.isOptimized = false;",
+					to: "window.isOptimized = true;"
+				}]
+			}
+		},
 
-    watch: {
-      handlebars: {
-        options: { livereload: true },
-        files: ["app/bundles/**/templates/*.bars"],
-        tasks: ['handlebars']
-      },
-      css_files: {
-        options: { livereload: true },
-        files: ['{.tmp,<%= yeoman.app %>/**/*.css'],
-        tasks: []
-      },
-      js_files: {
-        options: { livereload: true },
-        files: ['.tmp,<%= yeoman.app %>/**/*.js'],
-        tasks: []
-      },
-      html_files: {
-        options: { livereload: true },
-        files: ['.tmp,<%= yeoman.app %>/**/*.html'],
-        tasks: []
-      }
-      //whenever_files_below_are_modified_connect_colon_app_task_will_run: { // this weird name "whenever_files_below_are_modified_connect_colon_app_task_will_run" does not matter.
-      //    files: [
-      //        '<%= yeoman.app %>/*.html',
-      //        '{.tmp,<%= yeoman.app %>}/styles/{,*/}*.css',
-      //        '{.tmp,<%= yeoman.app %>}/scripts/{,*/}*.js',
-      //        '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,webp}'
-      //    ],
-      //    tasks: ['connect:app']
-      //}
-    },
-    connect: {
-      options: {
-        port: 9000,
-        // change this to '0.0.0.0' to access the server from outside
-        hostname: '0.0.0.0',
-        livereload: true
-      },
-      app: {
-        options: {
-          middleware: function (connect) {
-            return [
-              mountFolder(connect, '.tmp'),
-              mountFolder(connect, 'app')
-            ];
-          }
-        }
-      },
-      test: {
-        options: {
-          middleware: function (connect) {
-            return [
-              mountFolder(connect, '.tmp'),
-              mountFolder(connect, 'test')
-            ];
-          }
-        }
-      },
-      dist: {
-        options: {
-          middleware: function (connect) {
-            return [
-              mountFolder(connect, 'dist')
-            ];
-          }
-        }
-      }
-    },
-    open: {
-      server: {
-        path: 'http://localhost:<%= connect.options.port %>'
-      }
-    },
-    clean: {
-      dist: ['.tmp', '<%= yeoman.dist %>/*'],
-      server: '.tmp'
-    },
-    jshint: {
-      options: {
-        jshintrc: '.jshintrc'
-      },
-      all: [
-        'Gruntfile.js',
-        '<%= yeoman.app %>/scripts/{,*/}*.js',
-        '!<%= yeoman.app %>/scripts/vendor/*',
-        'test/spec/{,*/}*.js'
-      ]
-    },
-    mocha: {
-      all: {
-        options: {
-          run: true,
-          urls: ['http://localhost:<%= connect.options.port %>/index.html']
-        }
-      }
-    },
-    // not used since Uglify task does concat,
-    // but still available if needed
-    /*concat: {
+		watch:
+		{
+			handlebars:
+			{
+				options:
+				{
+					livereload: true
+				},
+				files: ["app/bundles/**/templates/*.bars"],
+				tasks: ['handlebars']
+			},
+			css_files:
+			{
+				options:
+				{
+					livereload: true
+				},
+				files: ['{.tmp,<%= yeoman.app %>/**/*.css'],
+				tasks: []
+			},
+			js_files:
+			{
+				options:
+				{
+					livereload: true
+				},
+				files: ['.tmp,<%= yeoman.app %>/**/*.js'],
+				tasks: []
+			},
+			html_files:
+			{
+				options:
+				{
+					livereload: true
+				},
+				files: ['.tmp,<%= yeoman.app %>/**/*.html'],
+				tasks: []
+			}
+			//whenever_files_below_are_modified_connect_colon_app_task_will_run: { // this weird name "whenever_files_below_are_modified_connect_colon_app_task_will_run" does not matter.
+			//    files: [
+			//        '<%= yeoman.app %>/*.html',
+			//        '{.tmp,<%= yeoman.app %>}/styles/{,*/}*.css',
+			//        '{.tmp,<%= yeoman.app %>}/scripts/{,*/}*.js',
+			//        '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,webp}'
+			//    ],
+			//    tasks: ['connect:app']
+			//}
+		},
+		connect:
+		{
+			options:
+			{
+				port: 9000,
+				// change this to '0.0.0.0' to access the server from outside
+				hostname: '0.0.0.0',
+				livereload: true
+			},
+			app:
+			{
+				options:
+				{
+					middleware: function(connect)
+					{
+						return [
+							mountFolder(connect, '.tmp'),
+							mountFolder(connect, 'app')
+						];
+					}
+				}
+			},
+			test:
+			{
+				options:
+				{
+					middleware: function(connect)
+					{
+						return [
+							mountFolder(connect, '.tmp'),
+							mountFolder(connect, 'test')
+						];
+					}
+				}
+			},
+			dist:
+			{
+				options:
+				{
+					middleware: function(connect)
+					{
+						return [
+							mountFolder(connect, 'dist')
+						];
+					}
+				}
+			}
+		},
+		open:
+		{
+			server:
+			{
+				path: 'http://localhost:<%= connect.options.port %>'
+			}
+		},
+		clean:
+		{
+			dist: ['.tmp', '<%= yeoman.dist %>/*'],
+			server: '.tmp'
+		},
+		jshint:
+		{
+			options:
+			{
+				jshintrc: '.jshintrc'
+			},
+			all: [
+				'Gruntfile.js',
+				'<%= yeoman.app %>/scripts/{,*/}*.js',
+				'!<%= yeoman.app %>/scripts/vendor/*',
+				'test/spec/{,*/}*.js'
+			]
+		},
+		mocha:
+		{
+			all:
+			{
+				options:
+				{
+					run: true,
+					urls: ['http://localhost:<%= connect.options.port %>/index.html']
+				}
+			}
+		},
+		// not used since Uglify task does concat,
+		// but still available if needed
+		/*concat: {
     dist: {}
   },*/
-  requirejs: {
-    dist: {
-      // Options: https://github.com/jrburke/r.js/blob/master/build/example.build.js
-      options: {
-        // `name` and `out` is set by grunt-usemin
-        baseUrl: 'app/scripts',
-        optimize: 'none',
-        mainConfigFile: 'app/scripts/main.js',
-        // TODO: Figure out how to make sourcemaps work with grunt-usemin
-        // https://github.com/yeoman/grunt-usemin/issues/30
-        //generateSourceMaps: true,
-        // required to support SourceMaps
-        // http://requirejs.org/docs/errors.html#sourcemapcomments
-        preserveLicenseComments: false,
-        useStrict: true,
-        wrap: true,
-        //uglify2: {} // https://github.com/mishoo/UglifyJS2
-      }
-    }
-  },
-  useminPrepare: {
-    html: '<%= yeoman.app %>/index.html',
-    options: {
-      dest: '<%= yeoman.dist %>'
-    }
-  },
-  usemin: {
-    html: ['<%= yeoman.dist %>/{,*/}*.html'],
-    css: ['<%= yeoman.dist %>/styles/{,*/}*.css'],
-    options: {
-      dirs: ['<%= yeoman.dist %>']
-    }
-  },
-  imagemin: {
-    dist: {
-      files: [{
-        expand: true,
-        cwd: '<%= yeoman.app %>/images',
-        src: '{,*/}*.{png,jpg,jpeg}',
-        dest: '<%= yeoman.dist %>/images'
-      }]
-    }
-  },
-  // cssmin: {
-  //     dist: {
-  //         files: {
-  //             '<%= yeoman.dist %>/styles/main.css': [
-  //                 '.tmp/styles/{,*/}*.css',
-  //                 '<%= yeoman.app %>/styles/{,*/}*.css'
-  //             ]
-  //         }
-  //     }
-  // },
-  // VALIDATE CSS FILES ACCORDING TO CSS3 STANDARD
-  'css-validation': {
-    options: {
-      reset: false,
-      stoponerror: false,
-      relaxerror: [],
-      profile: 'css3', // possible profiles are: none, css1, css2, css21, css3, svg, svgbasic, svgtiny, mobile, atsc-tv, tv
-      medium: 'all', // possible media are: all, aural, braille, embossed, handheld, print, projection, screen, tty, tv, presentation
-      warnings: '0' // possible warnings are: 2 (all), 1 (normal), 0 (most important), no (no warnings)
-    },
-    files: {
-      src: ['{.tmp,<%= yeoman.app %>}/styles/{,*/}*.css']
-    }
-  },
-  // VALIDATE HTML FILES ACCORDING TO HTML5 STANDARD
-  'html-validation': {
-    options: {
-      reset: false,
-      stoponerror: false
-    },
-    files: {
-      src: '<%= yeoman.app %>/*.html'
-    }
-  },
-  htmlmin: {
-    dist: {
-      options: {
-        /*removeCommentsFromCDATA: true,
-        // https://github.com/yeoman/grunt-usemin/issues/44
-        //collapseWhitespace: true,
-        collapseBooleanAttributes: true,
-        removeAttributeQuotes: true,
-        removeRedundantAttributes: true,
-        useShortDoctype: true,
-        removeEmptyAttributes: true,
-        removeOptionalTags: true*/
-      },
-      files: [{
-        expand: true,
-        cwd: '<%= yeoman.app %>',
-        src: '*.html',
-        dest: '<%= yeoman.dist %>'
-      }]
-    }
-  },
-  copy: {
-    dist: {
-      files: [{
-        expand: true,
-        dot: true,
-        cwd: '<%= yeoman.app %>',
-        dest: '<%= yeoman.dist %>',
-        src: [
-          '.htaccess',
-          'empty.html',
-          'preview_export/**',
-          'zip/**'
-        ]
-      },
-      {
-        expand: true,
-        dot: true,
-        flatten: true,
-        cwd: '<%= yeoman.app %>',
-        dest: '<%= yeoman.dist %>/styles/img',
-        src: [
-          '**/*.{ico,txt,png,jpg,gif}',
-        ]
-      },
-      // TODO: figure out what the deal is with the fonts in dist mode...
-      {
-        expand: true,
-        dot: true,
-        flatten: true,
-        cwd: '<%= yeoman.app %>',
-        dest: '<%= yeoman.dist %>/styles',
-        src: [
-          '**/*.woff'
-        ]
-      },
-      {
-        expand: true,
-        cwd: '<%= yeoman.app %>/styles/strut.themes',
-        dest: '<%= yeoman.dist %>/styles/strut.themes',
-        src: [
-          '**/*.png',
-          '*.css'
-        ]
-      }]
-    }
-  },
-  bower: {
-    all: {
-      rjsConfig: '<%= yeoman.app %>/scripts/main.js'
-    }
-  }
-});
+		requirejs:
+		{
+			dist:
+			{
+				// Options: https://github.com/jrburke/r.js/blob/master/build/example.build.js
+				options:
+				{
+					// `name` and `out` is set by grunt-usemin
+					baseUrl: 'app/scripts',
+					optimize: 'none',
+					mainConfigFile: 'app/scripts/main.js',
+					// TODO: Figure out how to make sourcemaps work with grunt-usemin
+					// https://github.com/yeoman/grunt-usemin/issues/30
+					//generateSourceMaps: true,
+					// required to support SourceMaps
+					// http://requirejs.org/docs/errors.html#sourcemapcomments
+					preserveLicenseComments: false,
+					useStrict: true,
+					wrap: true,
+					//uglify2: {} // https://github.com/mishoo/UglifyJS2
+				}
+			}
+		},
+		useminPrepare:
+		{
+			html: '<%= yeoman.app %>/index.html',
+			options:
+			{
+				dest: '<%= yeoman.dist %>'
+			}
+		},
+		usemin:
+		{
+			html: ['<%= yeoman.dist %>/{,*/}*.html'],
+			css: ['<%= yeoman.dist %>/styles/{,*/}*.css'],
+			options:
+			{
+				dirs: ['<%= yeoman.dist %>']
+			}
+		},
+		imagemin:
+		{
+			dist:
+			{
+				files: [
+				{
+					expand: true,
+					cwd: '<%= yeoman.app %>/images',
+					src: '{,*/}*.{png,jpg,jpeg}',
+					dest: '<%= yeoman.dist %>/images'
+				}]
+			}
+		},
+		// cssmin: {
+		//     dist: {
+		//         files: {
+		//             '<%= yeoman.dist %>/styles/main.css': [
+		//                 '.tmp/styles/{,*/}*.css',
+		//                 '<%= yeoman.app %>/styles/{,*/}*.css'
+		//             ]
+		//         }
+		//     }
+		// },
+		// VALIDATE CSS FILES ACCORDING TO CSS3 STANDARD
+		'css-validation':
+		{
+			options:
+			{
+				reset: false,
+				stoponerror: false,
+				relaxerror: [],
+				profile: 'css3', // possible profiles are: none, css1, css2, css21, css3, svg, svgbasic, svgtiny, mobile, atsc-tv, tv
+				medium: 'all', // possible media are: all, aural, braille, embossed, handheld, print, projection, screen, tty, tv, presentation
+				warnings: '0' // possible warnings are: 2 (all), 1 (normal), 0 (most important), no (no warnings)
+			},
+			files:
+			{
+				src: ['{.tmp,<%= yeoman.app %>}/styles/{,*/}*.css']
+			}
+		},
+		// VALIDATE HTML FILES ACCORDING TO HTML5 STANDARD
+		'html-validation':
+		{
+			options:
+			{
+				reset: false,
+				stoponerror: false
+			},
+			files:
+			{
+				src: '<%= yeoman.app %>/*.html'
+			}
+		},
+		htmlmin:
+		{
+			dist:
+			{
+				options:
+				{
+					/*removeCommentsFromCDATA: true,
+					// https://github.com/yeoman/grunt-usemin/issues/44
+					//collapseWhitespace: true,
+					collapseBooleanAttributes: true,
+					removeAttributeQuotes: true,
+					removeRedundantAttributes: true,
+					useShortDoctype: true,
+					removeEmptyAttributes: true,
+					removeOptionalTags: true*/
+				},
+				files: [
+				{
+					expand: true,
+					cwd: '<%= yeoman.app %>',
+					src: '*.html',
+					dest: '<%= yeoman.dist %>'
+				}]
+			}
+		},
+		copy:
+		{
+			dist:
+			{
+				files: [
+					{
+						expand: true,
+						dot: true,
+						cwd: '<%= yeoman.app %>',
+						dest: '<%= yeoman.dist %>',
+						src: [
+							'.htaccess',
+							'empty.html',
+							'preview_export/**',
+							'zip/**'
+						]
+					},
+					{
+						expand: true,
+						dot: true,
+						flatten: true,
+						cwd: '<%= yeoman.app %>',
+						dest: '<%= yeoman.dist %>/styles/img',
+						src: [
+							'**/*.{ico,txt,png,jpg,gif}',
+						]
+					},
+					// TODO: figure out what the deal is with the fonts in dist mode...
+					{
+						expand: true,
+						dot: true,
+						flatten: true,
+						cwd: '<%= yeoman.app %>',
+						dest: '<%= yeoman.dist %>/styles',
+						src: [
+							'**/*.woff'
+						]
+					},
+					{
+						expand: true,
+						cwd: '<%= yeoman.app %>/styles/strut.themes',
+						dest: '<%= yeoman.dist %>/styles/strut.themes',
+						src: [
+							'**/*.png',
+							'*.css'
+						]
+					}
+				]
+			}
+		},
+		bower:
+		{
+			all:
+			{
+				rjsConfig: '<%= yeoman.app %>/scripts/main.js'
+			}
+		}
+	});
 
-// grunt.renameTask('regarde', 'watch');
+	// grunt.renameTask('regarde', 'watch');
 
-grunt.registerTask('server', function (target) {
-  if (target === 'dist') {
-    return grunt.task.run(['build', 'open', 'connect:dist:keepalive']);
-  }
+	grunt.registerTask('server', function(target)
+	{
+		if (target === 'dist')
+		{
+			return grunt.task.run(['build', 'open', 'connect:dist:keepalive']);
+		}
 
-  grunt.task.run([
-    'clean:server',
-    'handlebars',
-    'connect:app',
-	'electron-packager:buildWindows',
-    'watch'
-  ]);
-});
+		grunt.task.run([
+			'clean:server',
+			'handlebars',
+			'connect:app',
+			'watch'
+		]);
+	});
 
-grunt.registerTask('test', [
-  'clean:server',
-  'connect:test',
-  'mocha'
-]);
+	grunt.registerTask('test', [
+		'clean:server',
+		'connect:test',
+		'mocha'
+	]);
 
-grunt.registerTask('build', [
-  'clean:dist',
-  'handlebars',
-  'useminPrepare',
-  'requirejs',
-  'imagemin',
-  'htmlmin',
-  'concat',
-  // 'cssmin',
-  'uglify',
-  'copy',
-  'replace',
-  'usemin'
-]);
+	grunt.registerTask('build', [
+		'clean:dist',
+		'handlebars',
+		'useminPrepare',
+		'requirejs',
+		'imagemin',
+		'htmlmin',
+		'concat',
+		// 'cssmin',
+		'uglify',
+		'copy',
+		'replace',
+		'usemin'
+	]);
 
-grunt.registerTask('default', [
-  'jshint',
-  'test',
-  'build',
-  'electron-packager:buildWindows'
-]);
+	grunt.registerTask('default', [
+		'jshint',
+		'test',
+		'build'
+	]);
 };

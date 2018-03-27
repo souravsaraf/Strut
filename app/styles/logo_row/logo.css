@@ -51,10 +51,11 @@
     height: 35vh;
 }
 
-.logoRow_configMenuItem .modal-footer .alert {
+.modal-footer .alert {
     display: inline-block;
     padding-top: 4px;
     padding-bottom: 4px;
+    margin-bottom: 0px;
 }
 
 .logoRow_configMenuItem .container-fluid {
@@ -84,7 +85,7 @@
     background-color: #eeeeee;
 }
 
-.logoRow_configMenuItem .flex-pinch-out {
+.flex-pinch-out {
     display: -webkit-flex;
     display: flex;
     -webkit-justify-content: space-between;
@@ -95,4 +96,10 @@
 
 .logoRow_configMenuItem .width-auto {
     width: auto;
+}
+
+/* CSS for the modals in Tag Library */
+
+.AddLibraryModal input[type="text"] {
+    width: 98%;
 }

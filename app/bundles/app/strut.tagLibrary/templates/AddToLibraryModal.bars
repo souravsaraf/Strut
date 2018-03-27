@@ -1,0 +1,44 @@
+<div class="modal-header">
+	<button class="close" data-dismiss="modal">×</button>
+	<h3 class="title">{{title}}</h3>
+</div>
+<div class="modal-body">
+	<form data-id="addToLibraryForm">
+		<label>*{{filename}}</label>
+		<input type="text" maxlength="250" required data-id="PresentationFileNameTextBox"/>
+
+		<br/><br/>
+
+		<label>{{presentationtitle}}</label>
+		<input type="text" maxlength="80" data-id="PresentationTitleTextBox"/>
+
+		<br/><br/>
+
+		<div class="flex-pinch-out" style="margin-bottom: 5px;">
+			<label>*{{tags}}</label>
+			<span>
+				<button data-id="clearAllTagsButton" class="btn" type="button">{{clearAllTags}}</button>
+				<button data-id="autoGenerateTagsButton" class="btn" type="button">{{autoGenerateTags}}</button>
+			</span>
+		</div>
+		<input id="tagsInput" type="text" class="flexdatalist"/>
+		
+		<br/><br/>
+
+		<div data-id="historyDiv" class="flex-pinch-out" style="margin-bottom: 5px;">
+			<label data-id="historyLabel"></label>
+			<button data-id="clearHistoryButton" class="btn">{{clear}}</button>
+		</div>
+
+		<hr class="separator"/>
+
+	</form>
+	<datalist id="allTags"></datalist>
+</div>
+<div class="modal-footer">
+	<div class="alert">
+		<button class="close">×</button>
+	</div>
+	<a href="#" class="btn btn-primary ok btn-inverse" data-button_name="save">{{save}}</a>
+	<a href="#" class="btn btn-primary ok btn-inverse" data-button_name="cancel">{{cancel}}</a>
+</div>

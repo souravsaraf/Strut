@@ -52,7 +52,7 @@ define(['strut/electron_config/model/ElectronConfigInterface', 'lodash'], functi
 
 	function nonRecursiveRegexSearch(path, regex)
 	{
-		console.log("Search Path is : " + path);
+		// console.log("Search Path is : " + path);
 		let results = [];
 		var files = FileStorageProvider.impl.readdirSync(path);
 		for (var i = 0; i < files.length; i++)
@@ -229,7 +229,7 @@ define(['strut/electron_config/model/ElectronConfigInterface', 'lodash'], functi
 				try
 				{
 					let data = FileStorageProvider.impl.readFileSync(path, DEFAULT_ENCODING);
-					console.dir(data);
+					// console.dir(data);
 					if (IsJsonStringOrJsonObject(data))
 					{
 						data = JSON.parse(data);
