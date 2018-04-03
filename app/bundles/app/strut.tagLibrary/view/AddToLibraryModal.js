@@ -44,6 +44,7 @@ define(["backbone", "lang", "lodash"], function(Backbone, lang, _)
 			this.insertSuccessMessage = lang.insert_successful;
 			this.editSuccessMessage = lang.update_successful;
 
+			this.render();
 			if (this.mode == "add")
 			{
 				this.initializeAddLibrary();
@@ -56,7 +57,6 @@ define(["backbone", "lang", "lodash"], function(Backbone, lang, _)
 
 		initializeAddLibrary: function()
 		{
-			this.render();
 			this.$el.find('input[data-id="PresentationFileNameTextBox"]')[0].value = this.editorModel.fileName();
 			this.$el.find('input[data-id="PresentationFileNameTextBox"]').prop('readonly', true);
 			this.$el.find('input[data-id="PresentationTitleTextBox"]').val("");

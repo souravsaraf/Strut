@@ -1,0 +1,11 @@
+<table data-id="datatable" class="table table-hover table-bordered" style="" width="100%">
+	<thead>
+        <tr>
+            <th>File</th>
+            <th>Title</th>
+            <th>Tags</th>
+            <th>History</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+</table>

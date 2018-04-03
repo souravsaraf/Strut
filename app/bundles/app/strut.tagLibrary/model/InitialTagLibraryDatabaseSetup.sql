@@ -25,5 +25,5 @@ CREATE TABLE IF NOT EXISTS Presentations_History
 	id text NOT NULL UNIQUE,
 	history text,
 	CONSTRAINT PK_Presentations_History_id PRIMARY KEY (id),
-	CONSTRAINT FK_Presentations_History_id FOREIGN KEY(id) REFERENCES Presentations(id) ON DELETE CASCADE ON UPDATE CASCADE
+	CONSTRAINT FK_Presentations_History_id FOREIGN KEY(history) REFERENCES Presentations(id) ON DELETE CASCADE ON UPDATE CASCADE
 ) WITHOUT ROWID;

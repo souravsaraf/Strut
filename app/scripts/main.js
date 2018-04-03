@@ -16,7 +16,7 @@ require.config(
 		css: "../scripts/libs/css",
 		bootstrap: "../components/bootstrap/bootstrap",
 		flexdatalist: "../components/flexdatalist/jquery.flexdatalist.min",
-		datatable: "../components/datatable/jquery.dataTables.min.js",
+		datatable: "../components/datatable/jquery.dataTables.min",
 		colorpicker: "../components/spectrum/spectrum",
 		handlebars: '../scripts/libs/Handlebars',
 		lang: "../locales/lang",

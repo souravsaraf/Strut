@@ -100,6 +100,7 @@ define(['backbone', 'lang', 'css!styles/widgets/fileBrowser.css'],
 				{
 					dialog
 				} = require("electron").remote;
+				const path = require('path');
 				if (this.action == "open")
 				{
 					let pathArray = dialog.showOpenDialog(
@@ -114,7 +115,7 @@ define(['backbone', 'lang', 'css!styles/widgets/fileBrowser.css'],
 					});
 					if (typeof pathArray != "undefined" && pathArray != null && pathArray.length != null && pathArray.length > 0)
 					{
-						this.$fileName.val(pathArray[0]);
+						this.$fileName.val(path.normalize(pathArray[0]));
 					}
 				}
 				else
@@ -130,7 +131,7 @@ define(['backbone', 'lang', 'css!styles/widgets/fileBrowser.css'],
 					});
 					if (saveFileName)
 					{
-						this.$fileName.val(saveFileName);
+						this.$fileName.val(path.normalize(saveFileName));
 					}
 				}
 			},

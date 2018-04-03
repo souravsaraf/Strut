@@ -9,6 +9,7 @@
     "html-to-text": "^4.0.0",
     "isbinaryfile": "^3.0.2",
     "nlcst-to-string": "^2.0.1",
+    "node-webshot": "^1.0.2",
     "requirejs": "^2.3.5",
     "retext": "^5.0.0",
     "retext-keywords": "^4.0.1",

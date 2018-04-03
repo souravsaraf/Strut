@@ -59,7 +59,18 @@ define(['tantaman/web/widgets/MenuItem',
 				menuItems.push(new MenuItem(
 				{
 					title: lang.tagLibrary.viewLibrary,
-					modal: viewLibraryModal,
+					handler: function()
+					{
+						$modals.find('.modal.ViewLibraryModal').remove();
+						let viewLibraryModal = new ViewLibraryModal(
+						{
+							editorModel: editorModel,
+							electronLibraryInterface: electronLibraryInterface,
+							mode: "browse"
+						});
+						$modals.append(viewLibraryModal.$el);
+						viewLibraryModal.show();
+					}
 				}));
 
 				menuItems.push(new MenuItem(

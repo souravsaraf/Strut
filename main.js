@@ -7,9 +7,6 @@ const os = require("os")
 const app = electron.app; // Module to control application life.
 const BrowserWindow = electron.BrowserWindow; // Module to create native browser window.
 
-// Logging stuff
-console.log("Logging userData path : " + app.getPath('userData'));
-
 const electronLocalshortcut = require('electron-localshortcut'); // using this module for local key bindings (when app is focussed)
 
 function checkExistenceOfRecentFiles(strut_electron_config)
@@ -71,7 +68,7 @@ let mainWindow;
 let DEFAULT_STRUT_ELECTRON_CONFIG = {
 	"storage":
 	{
-		"presentationFolder": path.join(os.homedir(), "Documents"),
+		"presentationFolder": path.normalize(path.join(os.homedir(), "Documents")),
 		"recentFilesCount": 5,
 		"recentFilesList": []
 	},

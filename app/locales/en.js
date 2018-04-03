@@ -27,8 +27,12 @@ define(
 	shapes: "Shapes",
 	single_slide_bg: "Single Slide Background",
 	invisible: "Invisible",
+	edit: "Edit",
+	delete: "Delete",
+	preview: "Preview",
 	reset: "Reset",
 	go: "Go",
+	search: "Search",
 	strut_exporter_json:
 	{
 		explain: "This allows you to save a file on your computer that you can import back into Strut later.",
@@ -40,6 +44,7 @@ define(
 	cancel: "Cancel",
 	browse: "Browse",
 	clear: "Clear",
+	file: "File",
 	invalid_form_input: "Form has invalid inputs",
 	insert_successful: "Insert Successful",
 	update_successful: "Update Successful",
@@ -62,11 +67,16 @@ define(
 		exportLibrary: "Export Library",
 		filename: "File Name",
 		presentationtitle: "Presentation Title",
+		title: "Title",
 		tags: "Tags",
+		history: "History",
+		historyContains: "History contains _ items",
 		clearAllTags: "Clear Tags",
 		autoGenerateTags: "Auto-generate Tags",
 		addTagsMessage: "Add tags and press enter",
-		min3Tags: "Minimum 3 Tags needed"
+		min3Tags: "Minimum 3 Tags needed",
+		searchBy: "Search By",
+		details: "Details",
+		previewMessage: "Click preview to see file"
 	},
-	file: "File",
 });

@@ -103,3 +103,49 @@
 .AddLibraryModal input[type="text"] {
     width: 98%;
 }
+
+.ViewLibraryModal {
+    width: auto;
+    height: 100vh;
+    margin-left: 0px;
+    left: 0px;
+    top: 0px;
+}
+
+.ViewLibraryModal .table-hover tbody tr:hover td {
+    background-color: #eeeeee;
+}
+
+.ViewLibraryModal .table-bordered,
+.ViewLibraryModal .table-bordered th,
+.ViewLibraryModal .table-bordered td {
+    border-left-width: 1px !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.ViewLibraryModal .table-bordered th:nth-child(1),
+.ViewLibraryModal .table-bordered td:nth-child(1) {
+    max-width: 5vw;
+}
+
+.ViewLibraryModal .table-bordered th:nth-child(2),
+.ViewLibraryModal .table-bordered td:nth-child(2) {
+    max-width: 5vw;
+}
+
+.ViewLibraryModal .table-bordered th:nth-child(3),
+.ViewLibraryModal .table-bordered td:nth-child(3) {
+    max-width: 10vw;
+}
+
+.ViewLibraryModal .table-bordered th:nth-child(4),
+.ViewLibraryModal .table-bordered td:nth-child(4) {
+    max-width: 4vw;
+}
+
+.ViewLibraryModal .table-bordered th:nth-child(5),
+.ViewLibraryModal .table-bordered td:nth-child(5) {
+    max-width: 4vw;
+}

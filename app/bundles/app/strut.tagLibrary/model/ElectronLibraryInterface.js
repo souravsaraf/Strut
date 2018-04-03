@@ -47,9 +47,7 @@ define(['lodash'],
 
 		function initializeDatabase()
 		{
-			let appPath = remote.app.getPath('userData');
-			let filename = "strutTagLibrary.db";
-			let databaseFile = path.join(appPath, filename);
+			let databaseFile = window.sessionMeta.tagLibraryDatabaseFile;
 			try
 			{
 				let db = new Database(databaseFile);
@@ -180,7 +178,7 @@ define(['lodash'],
 				let retext = require('retext');
 				let keywords = require('retext-keywords');
 				let nlcstToString = require('nlcst-to-string');
-				let appPath = remote.app.getPath('userData');
+				let appPath = window.sessionMeta.appPath;
 				let filename = "temp.txt";
 				let tempFilename = path.join(appPath, filename);
 				fs.writeFileSync(tempFilename, text);
@@ -218,6 +216,46 @@ define(['lodash'],
 				{
 					console.dir(error);
 					db.close();
+					throw error;
+				}
+			},
+
+			getAllLibraryItems: function()
+			{
+				try
+				{
+					var db = new Database(this.databaseFile);
+					db.pragma('foreign_keys = ON');
+					let results = db.prepare(`
+					SELECT p.id AS file, p.title AS title , GROUP_CONCAT(pt.tag) AS tags, GROUP_CONCAT(ph.history) AS history
+					FROM Presentations AS p
+					INNER JOIN Presentations_Tags AS pt on p.id = pt.id
+					INNER JOIN Presentations_History AS ph on p.id = ph.id
+					GROUP BY p.id`).all();
+					db.close();
+					return results;
+				}
+				catch (error)
+				{
+					throw error;
+				}
+			},
+
+			deleteLibraryItem: function(filename)
+			{
+				try
+				{
+					var db = new Database(this.databaseFile);
+					db.pragma('foreign_keys = ON');
+					let results = db.prepare("DELETE FROM Presentations WHERE id=@id").run(
+					{
+						id: filename
+					});
+					db.close();
+					return results;
+				}
+				catch (error)
+				{
 					throw error;
 				}
 			}

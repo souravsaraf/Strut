@@ -1,0 +1,24 @@
+<div class="modal-header">
+	<button class="close" data-dismiss="modal_inner">×</button>
+	<h3 class="title">{{details}}</h3>
+</div>
+<div class="modal-body">
+	<table class="table table-bordered">
+		<tr>
+			<td style="width: 70px;">File</td>
+			<td>{{filename}}</td>
+		</tr>
+		<tr>
+			<td>Title</td>
+			<td>{{presentationTitle}}</td>
+		</tr>
+		<tr>
+			<td>Tags</td>
+			<td><textarea rows="5" style="width: 410px;">{{tags}}</textarea></td>
+		</tr>
+		<tr>
+			<td>History</td>
+			<td><textarea rows="5" style="width: 410px;">{{history}}</textarea></td>
+		</tr>
+	</table>
+</div>

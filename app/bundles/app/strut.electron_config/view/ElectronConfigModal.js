@@ -207,12 +207,13 @@ define(["backbone", "lang"], function(Backbone, lang)
 			if (typeof pathArray != "undefined" && pathArray != null && pathArray.length != null && pathArray.length > 0)
 			{
 				let selectedFolder = pathArray[0];
+				selectedFolder = require('path').normalize(selectedFolder);
 				let currentForm = this.$el.find('form[data-id="' + this.currentFormID + '"]');
 				currentForm.find('input[data-id="StrutPresentationsFolderTextBox"]').val(selectedFolder);
 				let tempConfig = this.electronConfigInterface.getConfig();
 				tempConfig.storage.presentationFolder = selectedFolder;
 			}
-			console.log("Presentation folder = " + tempConfig.storage.presentationFolder);
+			// console.log("Presentation folder = " + tempConfig.storage.presentationFolder);
 		},
 		onInputRecentFilesCount: function(evt)
 		{
