@@ -204,8 +204,6 @@ define(["handlebars", "common/Math2", "marked", "strut/deck/Utils"],
 
 			ImpressGenerator.prototype.render = function(deck)
 			{
-				console.log("Deck Object Required By Impress.generate is : \n");
-				console.dir(deck);
 				var cnt, colCnt, slides,
 					_this = this;
 				var deckAttrs = deck.attributes;

@@ -33,6 +33,8 @@ define(
 	reset: "Reset",
 	go: "Go",
 	search: "Search",
+	tableView: "Table View",
+	gridView: "Grid View",
 	strut_exporter_json:
 	{
 		explain: "This allows you to save a file on your computer that you can import back into Strut later.",
@@ -62,11 +64,13 @@ define(
 	tagLibrary:
 	{
 		viewLibrary: "View Library",
-		addToLibrary: "Add To Library",
+		addToLibrary: "Add Item To Library",
+		editLibrary: "Edit Library Item",
 		importLibrary: "Import Library",
 		exportLibrary: "Export Library",
 		filename: "File Name",
 		presentationtitle: "Presentation Title",
+		thumbnailSlide: "Thumbnail Slide",
 		title: "Title",
 		tags: "Tags",
 		history: "History",
@@ -76,7 +80,8 @@ define(
 		addTagsMessage: "Add tags and press enter",
 		min3Tags: "Minimum 3 Tags needed",
 		searchBy: "Search By",
+		enterValueToSearch: "Enter Value to Search",
 		details: "Details",
-		previewMessage: "Click preview to see file"
+		previewMessage: "Click <i class='icon-eye-open'></i>preview to see file"
 	},
 });

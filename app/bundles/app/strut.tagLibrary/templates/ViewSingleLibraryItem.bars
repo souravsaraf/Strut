@@ -13,6 +13,10 @@
 			<td>{{presentationTitle}}</td>
 		</tr>
 		<tr>
+			<td>Thumbnail Slide</td>
+			<td>{{thumbnailSlide}}</td>
+		</tr>
+		<tr>
 			<td>Tags</td>
 			<td><textarea rows="5" style="width: 410px;">{{tags}}</textarea></td>
 		</tr>

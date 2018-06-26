@@ -1,13 +1,14 @@
 define(['tantaman/web/widgets/MenuItem',
 		'./view/ViewLibraryModal',
 		'./view/AddToLibraryModal',
+		'./view/EditLibraryModal',
 		'./view/ImportLibraryModal',
 		'./view/ExportLibraryModal',
 		'./model/ElectronLibraryInterface',
 		'./model/ActionHandler',
 		'lang',
 	],
-	function(MenuItem, ViewLibraryModal, AddToLibraryModal, ImportLibraryModal, ExportLibraryModal, ElectronLibraryInterface, ActionHandler, lang)
+	function(MenuItem, ViewLibraryModal, AddToLibraryModal, EditLibraryModal, ImportLibraryModal, ExportLibraryModal, ElectronLibraryInterface, ActionHandler, lang)
 	{
 		'use strict';
 
@@ -78,10 +79,26 @@ define(['tantaman/web/widgets/MenuItem',
 					title: lang.tagLibrary.addToLibrary,
 					handler: function()
 					{
+						let filename = editorModel.fileName();
 						if (window.sessionMeta.isNewPresentation == 1)
 						{
 							alert("Please Save the file before adding to Library");
 							return;
+						}
+						let rowData = electronLibraryInterface.getAllDataForThisFile(filename);
+						if (rowData)
+						{
+							$modals.find('.modal.EditLibraryModal').remove();
+							let editModal = new EditLibraryModal(
+							{
+								editorModel: this.editorModel,
+								electronLibraryInterface: this.electronLibraryInterface,
+								rowToEdit: rowData,
+								parent: document.body
+							});
+							$modals.append(editModal.$el);
+							$('body').append($('<div class="modal-backdrop"></div>'));
+							editModal.show();
 						}
 						else
 						{

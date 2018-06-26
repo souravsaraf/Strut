@@ -6,15 +6,16 @@ define(["backbone", "lang"], function(Backbone, lang)
 		className: "ViewSingleLibraryItem modal hide fade",
 		attributes:
 		{
-			"data-backdrop": "static",
+			"data-backdrop": false,
 			"data-keyboard": false
 		},
 		events:
 		{
 			'click button[data-dismiss="modal_inner"]': function(evt)
 			{
+				this.parent.$el.find('.modal-backdrop').remove();
 				this.$el.modal("hide");
-				$(evt.target).data('modal', null);
+				this.$el.data('modal', null);
 			}
 		},
 
@@ -28,7 +29,10 @@ define(["backbone", "lang"], function(Backbone, lang)
 		initialize: function()
 		{
 			this.templateData = this.options.templateData;
+			this.parent = this.options.parent;
 			delete this.options.templateData;
+			delete this.options.parent;
+
 			this.template = JST["strut.tagLibrary/ViewSingleLibraryItem"];
 			this.render();
 		},

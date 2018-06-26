@@ -33,3 +33,13 @@ echo.|time & rm -rf electron_packager_output_directory/* & electron-packager . -
 echo.|time & rm -rf electron_packager_output_directory/* & node ./node_modules/electron-packager/cli.js . --overwrite --out="electron_packager_output_directory" --icon="app/img/strut_icon_96.ico" --name="Strut" --igonre='.git' & echo.|time
 
 .\node_modules\.bin\electron-rebuild.cmd
+
+
+TODO : 
+
+Thumbnail number in viewSingle / edit modals
+Resize thumbnail image
+Suggestions
+ppt in Iframe
+Primary/Secondary slideshow
+Add to history / add to secondary

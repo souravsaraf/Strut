@@ -104,6 +104,10 @@
     width: 98%;
 }
 
+.EditLibraryModal input[type="text"] {
+    width: 98%;
+}
+
 .ViewLibraryModal {
     width: auto;
     height: 100vh;
@@ -148,4 +152,36 @@
 .ViewLibraryModal .table-bordered th:nth-child(5),
 .ViewLibraryModal .table-bordered td:nth-child(5) {
     max-width: 4vw;
+}
+
+/* CSS styling for stuff inside GridContainerDiv*/
+
+.GridView.GridContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 10px;
+    background-color: #fff;
+}
+
+.GridView .box {
+    display: flex;
+    flex-direction: column;
+    min-width: 150px;
+    min-height: 150px;
+    width: 150px;
+    height: 150px;
+    border-radius: 5px;
+    border: solid 1px black;
+    padding: 5px;
+}
+
+.GridView img {
+    flex: 1;
+    overflow: hidden;
+}
+
+.GridView p {
+    text-align: center;
+    margin: 0px;
+    flex: 0;
 }

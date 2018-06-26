@@ -1,11 +1,32 @@
-define(["backbone", "lang", "lodash"], function(Backbone, lang, _)
+define(["backbone", "lang", "lodash", "datatable", "strut/deck/Deck"], function(Backbone, lang, _, Datatable, Deck)
 {
 	"use strict";
 	return Backbone.View.extend(
 	{
-		className: "AddLibraryModal modal fade hide",
+		className: "EditLibraryModal modal fade hide",
+		attributes:
+		{
+			"data-backdrop": false,
+			"data-keyboard": false
+		},
 		events:
 		{
+			// Header Events
+			'click button[data-dismiss="modal_inner"]': function(evt)
+			{
+				if (this.parent == document.body)
+				{
+					this.parent.querySelectorAll('.modal-backdrop')[0].remove();
+				}
+				else
+				{
+					this.parent.$el.find('.modal-backdrop').remove();
+				}
+				this.$el.modal("hide");
+				this.$el.data('modal', null);
+			},
+
+			// Body events
 			'keyup #tagsInput-flexdatalist': "validateTags",
 			'click button[data-id="clearAllTagsButton"]': "clearTags",
 			'click button[data-id="autoGenerateTagsButton"]': "autoGenerateTags",
@@ -22,7 +43,7 @@ define(["backbone", "lang", "lodash"], function(Backbone, lang, _)
 		// General Backbone View Functions
 
 		dispose: function() {},
-		constructor: function AddToLibraryModal()
+		constructor: function EditLibraryModal()
 		{
 			Backbone.View.prototype.constructor.apply(this, arguments);
 		},
@@ -31,10 +52,14 @@ define(["backbone", "lang", "lodash"], function(Backbone, lang, _)
 		{
 			this.editorModel = this.options.editorModel;
 			this.electronLibraryInterface = this.options.electronLibraryInterface;
+			this.rowToEdit = this.options.rowToEdit;
+			this.parent = this.options.parent;
 			delete this.options.editorModel;
 			delete this.options.electronLibraryInterface;
+			delete this.options.rowToEdit;
+			delete this.options.parent;
 
-			this.template = JST["strut.tagLibrary/AddToLibraryModal"];
+			this.template = JST["strut.tagLibrary/EditLibraryModal"];
 
 			this.formInvalidMessage = lang.invalid_form_input;
 			this.min3TagsMessage = lang.tagLibrary.min3Tags;
@@ -42,15 +67,26 @@ define(["backbone", "lang", "lodash"], function(Backbone, lang, _)
 			this.editSuccessMessage = lang.update_successful;
 
 			this.render();
-			this.initializeAddLibrary();
+			this.initializeEditLibrary();
 		},
 
-		initializeAddLibrary: function()
+		initializeEditLibrary: function()
 		{
-			this.$el.find('input[data-id="PresentationFileNameTextBox"]')[0].value = this.editorModel.fileName();
-			this.$el.find('input[data-id="PresentationFileNameTextBox"]').prop('readonly', true);
-			this.$el.find('input[data-id="PresentationTitleTextBox"]').val("");
-			this.$el.find('input[data-id="thumbnailSlideInput"]').attr('max', this.getSlideCount());
+			// use this.this.rowToEdit here;
+			this.$el.find('input[data-id="PresentationFileNameTextBox"]')[0].value = this.rowToEdit.file;
+			this.$el.find('input[data-id="PresentationFileNameTextBox"]').prop('readonly', false);
+			this.$el.find('input[data-id="PresentationTitleTextBox"]').val(this.rowToEdit.title);
+			this.$el.find('input[data-id="thumbnailSlideInput"]').val(this.rowToEdit.thumbnailSlide);
+			let h = this.$el.find('label[data-id="historyLabel"]').text();
+			if (this.rowToEdit.history)
+			{
+				h = h.replace("_", "" + this.rowToEdit.history.split(",").length + "");
+			}
+			else
+			{
+				h = h.replace("_", "0");
+			}
+			this.$el.find('label[data-id="historyLabel"]').text(h);
 			this.populateDataList();
 			this.$el.find('#tagsInput').flexdatalist(
 			{
@@ -62,7 +98,7 @@ define(["backbone", "lang", "lodash"], function(Backbone, lang, _)
 				data: window.sessionMeta.allTags,
 				visibleProperties: ['tag']
 			});
-			// this.$el.find('#tagsInput').flexdatalist('data', window.sessionMeta.allTags);
+			this.$el.find('#tagsInput').flexdatalist('value', this.rowToEdit.tags);
 			this.$el.find('ul.flexdatalist-multiple').css("border", "1px solid #cccccc");
 			this.$el.find('#tagsInput-flexdatalist').css("margin-bottom", "0px");
 			this.$el.find('#tagsInput-flexdatalist').css("width", "initial");
@@ -75,25 +111,20 @@ define(["backbone", "lang", "lodash"], function(Backbone, lang, _)
 		{
 			this.$el.html(this.template(
 			{
-				title: lang.tagLibrary.addToLibrary,
+				title: lang.tagLibrary.editLibrary,
 				filename: lang.tagLibrary.filename,
 				presentationtitle: lang.tagLibrary.presentationtitle,
 				thumbnailSlide: lang.tagLibrary.thumbnailSlide,
 				tags: lang.tagLibrary.tags,
 				clearAllTags: lang.tagLibrary.clearAllTags,
 				autoGenerateTags: lang.tagLibrary.autoGenerateTags,
+				history: lang.tagLibrary.history,
 				historyContains: lang.tagLibrary.historyContains,
+				delete: lang.delete,
 				clear: lang.clear,
 				save: lang.save,
 				cancel: lang.cancel
 			}));
-		},
-
-		getSlideCount: function()
-		{
-			let deck = this.editorModel.deck();
-			let slideCount = deck.attributes.slides.length;
-			return slideCount;
 		},
 
 		populateDataList: function()
@@ -140,9 +171,14 @@ define(["backbone", "lang", "lodash"], function(Backbone, lang, _)
 			{
 				let x = [];
 				this.$el.find('#tagsInput').flexdatalist('value', x);
+				let fs = require('fs');
+				let jsonString = fs.readFileSync(this.rowToEdit.file, "utf8");
+				let rawobj = JSON.parse(jsonString);
 				let generators = this.editorModel.registry.getBest('strut.presentation_generator.GeneratorCollection');
 				let required_generator = generators[0];
-				let htmlString = required_generator.generate(this.editorModel.deck());
+				let deck = new Deck();
+				deck.import(rawobj);
+				let htmlString = required_generator.generate(deck);
 				let text = this.electronLibraryInterface.getTextFromHTML(htmlString);
 				let tags = this.electronLibraryInterface.getTagsFromText(text);
 				tags = _.uniq(tags);
@@ -229,11 +265,14 @@ define(["backbone", "lang", "lodash"], function(Backbone, lang, _)
 		{
 			const fs = require('fs');
 			const path = require('path');
+			let slideAsString = fs.readFileSync(slidefileName, 'utf8');
+			let slideAsObject = JSON.parse(slideAsString);
 			let basename = path.basename(slidefileName);
 			let imageBasename = basename.replace('strut', 'png');
 			let imagePath = path.join(window.sessionMeta.thumbnailsFolder, imageBasename);
 
-			let deck = this.editorModel.deck();
+			let deck = new Deck();
+			deck.import(slideAsObject);
 			let generators = this.editorModel.registry.getBest('strut.presentation_generator.GeneratorCollection');
 			let required_generator = generators[0];
 			let previewString = required_generator.generate(deck);
@@ -253,54 +292,67 @@ define(["backbone", "lang", "lodash"], function(Backbone, lang, _)
 			console.log(child_process.execSync(code).toString());
 		},
 
-		insertLibraryItem: function()
+		updateLibraryItem: function()
 		{
-			let currentForm = this.$el.find('form[data-id="addToLibraryForm"]')[0];
-			let totalTagsLength = this.$el.find('#tagsInput').flexdatalist('value').length;
-			if (currentForm.reportValidity() && totalTagsLength > 2)
+			try
 			{
-				let libraryItem = {};
-				libraryItem.filename = this.$el.find('input[data-id="PresentationFileNameTextBox"]').val();
-				libraryItem.title = this.$el.find('input[data-id="PresentationTitleTextBox"]').val();
-				libraryItem.thumbnailSlide = this.$el.find('input[data-id="thumbnailSlideInput"]').val();
-				libraryItem.tags = this.$el.find('#tagsInput').flexdatalist('value');
-				libraryItem.history = null; // history is null at start
-				try
+				let currentForm = this.$el.find('form[data-id="editLibraryForm"]')[0];
+				let totalTagsLength = this.$el.find('#tagsInput').flexdatalist('value').length;
+				if (currentForm.reportValidity() && totalTagsLength > 2)
 				{
+					// Update Item here
+					let libraryItem = {};
+					libraryItem.filename = this.$el.find('input[data-id="PresentationFileNameTextBox"]').val();
+					libraryItem.title = this.$el.find('input[data-id="PresentationTitleTextBox"]').val();
+					libraryItem.thumbnailSlide = this.$el.find('input[data-id="thumbnailSlideInput"]').val();
+					libraryItem.tags = this.$el.find('#tagsInput').flexdatalist('value');
+					libraryItem.deleteHistory = this.$el.find('input[data-id="deleteHistoryCheckbox"]').prop('checked');
+					let oldFileName = this.rowToEdit.file;
 					this.writeThumbnailImage(libraryItem.filename, libraryItem.thumbnailSlide);
-					this.electronLibraryInterface.insertNewLibraryItem(libraryItem);
-					this.configureAlertBox(this.insertSuccessMessage, "success", "visible");
+					this.electronLibraryInterface.updateLibraryItem(libraryItem, oldFileName);
+					this.rowToEdit.file = libraryItem.file;
+					this.rowToEdit.title = libraryItem.title;
+					this.rowToEdit.thumbnailSlide = libraryItem.thumbnailSlide;
+					this.rowToEdit.tags = libraryItem.tags;
+					this.rowToEdit.deleteHistory = libraryItem.deleteHistory;
+					if (this.parent != $('body'))
+					{
+						let table = this.parent.$el.find('table[data-id="datatable"]').DataTable();
+						this.parent.allDatabaseRows = this.electronLibraryInterface.getAllLibraryItems();
+						table.clear().rows.add(this.parent.allDatabaseRows).draw();
+					}
+					this.configureAlertBox(this.editSuccessMessage, "success", "visible");
 					return;
 				}
-				catch (error)
+				else
 				{
-					console.dir(error);
-					alert(error);
+					if (totalTagsLength < 3)
+					{
+						this.$el.find('#tagsInput-flexdatalist').focus();
+						this.configureAlertBox(this.min3TagsMessage, "error", "visible");
+						return;
+					}
+					this.configureAlertBox(this.formInvalidMessage, "error", "visible");
+					return;
 				}
 			}
-			else
+			catch (error)
 			{
-				if (totalTagsLength < 3)
-				{
-					this.$el.find('#tagsInput-flexdatalist').focus();
-					this.configureAlertBox(this.min3TagsMessage, "error", "visible");
-					return;
-				}
-				this.configureAlertBox(this.formInvalidMessage, "error", "visible");
-				return;
+
+				console.dir(error);
+				alert(error);
 			}
 		},
 
 		save: function()
 		{
-			this.insertLibraryItem();
+			this.updateLibraryItem();
 			this.updateDataListWithCurrentTags();
 		},
 
 		cancel: function()
 		{
 			this.$el.modal("hide");
-			this.$el.data('modal', null);
 		}
 	});
 });

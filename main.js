@@ -126,6 +126,7 @@ app.on('ready', function()
 
 	mainWindow.on('close', function(e)
 	{
+		mainWindow.webContents.executeJavaScript('localStorage.setItem("Strut_sessionMeta", JSON.stringify(window.sessionMeta))');
 		electronLocalshortcut.unregisterAll(mainWindow);
 		mainWindow = null;
 	});
